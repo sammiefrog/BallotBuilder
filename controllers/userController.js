@@ -12,12 +12,13 @@ module.exports = {
         if (err) return res.status(400).send(error.details[0].message);
 
         const usernameIsRegistered = await User.findOne({ username });
+        console.log(usernameIsRegistered);
         if (usernameIsRegistered) return res.status(400).send('This username is already in use');
 
-        const salt = await bcrypt.genSaltSync(10);
-        const hash = await bcrypt.hashSync(password, salt);
-
+        const salt = await bcrypt.genSalt();
+        const hash = await bcrypt.hash(password, salt);
         const newUser = new User({ username, password: hash });
+        console.log(newUser)
 
         try {
             await newUser.save();
@@ -35,7 +36,7 @@ module.exports = {
         if (err) return res.status(400).send(error.details[0].message);
 
         const existingUser = await User.findOne({ username });
-        if (!existinguser) return res
+        if (!existingUser) return res
             .status(400)
             .send("Username or password is incorrect!");
 
@@ -49,7 +50,7 @@ module.exports = {
             username: existingUser.username
         };
 
-        const token = await jwt.sign(jwt_payload, secret, { expiresIn: '3hr' });
+        const token = await jwt.sign(jwt_payload, secret, { expiresIn: '1hr' });
         res.status(200).send({ token: `Bearer ${token}` });
     }
 };

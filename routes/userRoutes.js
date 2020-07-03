@@ -4,12 +4,13 @@ const { RegistrationController, LoginController} = require('../controllers/userC
 module.exports = (app) => {
     app.post('/api/user/register', RegistrationController);
 
-    app.post('/api/user/login', )
+    app.post('/api/user/login', LoginController);
 
-    app.get(
+    app.post(
       "/api/user/validate",
       passport.authenticate("jwt", { session: false }),
-      (req, res) => {
+        (req, res) => {
+          console.log(req.user)
         res.status(200).send("Authorized.");
       }
     );

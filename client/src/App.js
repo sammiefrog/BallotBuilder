@@ -4,7 +4,7 @@ import './styles/App.css';
 function App() {
   return (
     <div>
-      <h1>Free Clinic Finder</h1>
+      <h1>BallotBuilder</h1>
     </div>
   );
 }
