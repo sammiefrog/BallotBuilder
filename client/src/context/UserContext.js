@@ -5,6 +5,9 @@ export const UserContext = createContext();
 class UserContextProvider extends Component {
     state = { 
         isLoggedIn: false,
+        isRegistered: false,
+        loginAttempt: false,
+        user: ""
     }
     
     render() { 
@@ -14,5 +17,5 @@ class UserContextProvider extends Component {
         </UserContext.Provider> );
     }
 }
- 
+
 export default UserContextProvider;
