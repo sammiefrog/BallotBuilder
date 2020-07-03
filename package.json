@@ -1,5 +1,5 @@
 {
-  "name": "FreeClinicFinder",
+  "name": "BallotBuilder",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sammiefrog/FreeClinicFinder.git"
+    "url": "git+https://github.com/sammiefrog/BallotBuilder.git"
   },
   "keywords": [],
   "author": "",
@@ -31,7 +31,7 @@
     "passport-jwt": "^4.0.0"
   },
   "bugs": {
-    "url": "https://github.com/sammiefrog/FreeClinicFinder/issues"
+    "url": "https://github.com/sammiefrog/BallotBuilder/issues"
   },
-  "homepage": "https://github.com/sammiefrog/FreeClinicFinder#readme"
+  "homepage": "https://github.com/sammiefrog/BallotBuilder#readme"
 }
