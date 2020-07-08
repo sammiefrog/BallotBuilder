@@ -12,7 +12,6 @@ module.exports = {
         if (err) return res.status(400).send(error.details[0].message);
 
         const usernameIsRegistered = await User.findOne({ username });
-        console.log(usernameIsRegistered);
         if (usernameIsRegistered) return res.status(400).send('This username is already in use');
 
         const salt = await bcrypt.genSalt();
