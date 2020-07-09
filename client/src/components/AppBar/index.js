@@ -37,7 +37,18 @@ export default function ButtonAppBar() {
           <Typography variant="h6" className={classes.title}>
             Ballot Builder
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" href="/home">
+            Home
+          </Button>
+          <Button color="inherit" href="/ballot">
+            MyBallot
+          </Button>
+          <Button color="inherit" href="/about">
+            About
+          </Button>
+          <Button color="inherit" href="/login">
+            Login
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
