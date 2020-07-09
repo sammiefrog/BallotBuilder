@@ -12,7 +12,7 @@ const candidateSchema = new mongoose.Schema({
   office: {
     type: String,
   },
-  encumbent: {
+  incumbent: {
     type: Boolean,
   },
   coreValues: {
