@@ -12,8 +12,8 @@ const candidateSchema = new mongoose.Schema({
   office: {
     type: String,
   },
-  incumbent: {
-    type: Boolean,
+  candidateId: {
+    type: String,
   },
   coreValues: {
     //link also
