@@ -6,7 +6,7 @@ const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
 module.exports = {
     presidentialCandidates: function (req, res) {
         axios
-            .get(FEDURL + APIKEY + "&officeId=1")
+            .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
             .then(results => {
                 res.json(results.data.candidateList);
             })
@@ -16,7 +16,7 @@ module.exports = {
     },
     senateCandidates: function (req, res) {
         axios
-            .get(FEDURL + APIKEY + "&officeId=6&stateId=TN")
+            .get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
             .then(results => {
                 res.json(results.data.candidateList);
             })
@@ -26,7 +26,7 @@ module.exports = {
     },
     houseCandidates: function (req, res) {
         axios
-            .get(FEDURL + APIKEY + "&officeId=5&stateId=TN")
+            .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
             .then(results => {
                 res.json(results.data.candidateList);
             })

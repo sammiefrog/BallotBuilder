@@ -21,7 +21,7 @@ require('./config/passport')(passport);
 
 // requiring routes
 require("./routes/voteSmart")(app)
-require("./routes/userRoutes")
+require("./routes/userRoutes")(app)
 
 // Send every other request to the React app
 // Define any API routes before this runs
