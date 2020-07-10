@@ -1,9 +1,32 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
+import { makeStyles } from "@material-ui/core/styles";
+// import LoginForm from '../components/LoginForm';
+import Box from '@material-ui/core/Box';
+import Typography from '@material-ui/core/Typography';
+
+const useStyles = makeStyles((theme) => ({
+    typography: {
+        marginTop: '20px',
+  }
+}));
 
 const Login = () => {
-    return (<div>
-        <h1>Login</h1>
-    </div> );
+    const classes = useStyles();
+
+    return (
+      <div>
+        <Box className={classes.typography}>
+          <Typography
+            align='center'
+            variant="h3"
+            color="secondary"
+          >
+            Login to create or view your ballot!
+          </Typography>
+        </Box>
+        {/* <LoginForm /> */}
+      </div>
+    );
 }
  
 export default Login;
