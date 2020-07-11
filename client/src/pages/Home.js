@@ -1,9 +1,7 @@
-import React from 'react';
-import { makeStyles } from "@material-ui/core/styles";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Paper from "@material-ui/core/Paper";
-// , { useContext, useEffect }
+
+import React, { useContext, useEffect } from 'react';
+import CenteredTabs from '../components/CenteredTabs'
+
 // where election info goes
 // put centered tab on home page
 // each election in a different component that is rendered on click
@@ -12,33 +10,13 @@ import Paper from "@material-ui/core/Paper";
 // card component - map when I bring into election data
 // around each card is a box and around the box is a grid list
 // keep box in card component and grid list in container component
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    }
-  }));
-
 const Home = () => {
-    const classes = useStyles();
-    return (
+    return ( 
         <div>
             <h1>Home Page</h1>
-            <Paper className={classes.root}>
-                <Tabs
-                    // value={value}
-                    // onChange={handleChange}
-                    indicatorColor="primary"
-                    textColor="primary"
-                    centered
-                >
-                    <Tab label="Presidential Election" />
-                    <Tab label="Senate Election" />
-                    <Tab label="House Election" />
-                </Tabs>
-            </Paper>
+            <CenteredTabs/>
         </div>
-    );
+     );
 }
-
+ 
 export default Home;
