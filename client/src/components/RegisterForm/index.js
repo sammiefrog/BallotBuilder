@@ -3,12 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
-import { UserContext }  from "../../context/contexts/UserContext";
-import SendLoginInfo from "./action";
+import { UserContext } from "../../context/contexts/UserContext";
+import { SendRegistration } from "./action";
 import { Typography } from "@material-ui/core";
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,46 +20,62 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       margin: theme.spacing(1),
     },
-    },
-    container: {
-        margin: '50px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center'
-  }
+  },
+  container: {
+    margin: "50px",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
 }));
 
-const LoginForm = () => {
-    const classes = useStyles();
-    const { user, dispatch } = useContext(UserContext);
+const RegistrationForm = () => {
+  const { user, dispatch } = useContext(UserContext);
+  const classes = useStyles();
+  
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const auth = user.loggedIn;
-    const message = user.message;
+  const [match, setMatch] = useState("");
+  
+    const authorized = user.loggedIn;
+    const registered = user.registered;
+    let message = user.message;
     let content;
 
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
+  const handleFormSubmit = (event) => {
+    event.preventDefault();
 
-        try {
-          const response = await SendLoginInfo(username, password);
+      if (password === match) {
+        SendRegistration(username, password).then(res => {
           dispatch({
-            type: "LOGIN_SUCCEEDED",
-            payload: { token: response.data.token },
+            type: "REGISTRATION_SUCCEEDED",
+            payload: { token: res.data.token },
           });
-        } catch (error) {
+        }).catch(error => {
           dispatch({
-            type: "LOGIN_FAILED",
+            type: "REGISTRATION_FAILED",
             payload: { error: error.response.data },
           });
           setPassword("");
-        }
-    }
+        })
+      }
+      else {
+        dispatch({
+          type: "REGISTRATION_FAILED",
+          payload: { message: "Passwords dont match!" },
+        });
+        setPassword("");
+        setMatch("");
+      }
+  };
 
 
-    auth
-      ? (content = <Redirect to="/ballot" />)
-      : (content = (
+    if (authorized) {
+        content = <Redirect to='/ballot' />;
+    } else if (registered) {
+        content = <Redirect to='/login' />;
+    } else {
+        content = (
           <Container className={classes.container}>
             <form onSubmit={handleFormSubmit} noValidate autoComplete="off">
               <Box>
@@ -84,23 +99,32 @@ const LoginForm = () => {
                 />
               </Box>
               <Box>
+                <TextField
+                  className={classes.root}
+                  id="outlined-basic password"
+                  label="Re-enter Password"
+                  value={match}
+                  variant="outlined"
+                  onChange={(event) => setMatch(event.target.value)}
+                />
+              </Box>
+              <Box>
                 <Button
                   type="submit"
                   className={classes.button}
                   variant="contained"
                   color="secondary"
                 >
-                  Login
+                  Register!
                 </Button>
                 <Typography variant="subtitle2">{message}</Typography>
               </Box>
             </form>
           </Container>
-        ));
+        );
+    };
 
-    return (
-        <div>{content}</div>
-    );
-}
+  return <div>{content}</div>;
+};
 
-export default LoginForm;
+export default RegistrationForm;
