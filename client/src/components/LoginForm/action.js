@@ -1,12 +1,8 @@
 import axios from "axios";
 
-const SendLoginInfo = (username, password) => {
-  const response = axios({
-    method: "POST",
-    url: "/api/user/login",
-    data: { username, password },
-  });
-  return response;
+export const SendLoginInfo = (username, password) => {
+  const reply = axios.post("/api/user/register",
+    { data: { username, password } });
+  return reply;
 };
 
-export default SendLoginInfo;

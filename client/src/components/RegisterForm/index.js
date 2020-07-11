@@ -5,8 +5,8 @@ import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Container from "@material-ui/core/Container";
 import { Redirect } from "react-router-dom";
-import UserContext from "../../context//UserContext";
-import SendRegister from "./action";
+import { UserContext } from "../../context/contexts/UserContext";
+import { SendRegistration } from "./action";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,44 +30,46 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RegistrationForm = () => {
-    const classes = useStyles();
-    const { user, dispatch } = useContext(UserContext);
+  const { user, dispatch } = useContext(UserContext);
+  const classes = useStyles();
+  
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [match, setMatch] = useState("");
-    const auth = user.loggedIn;
+  const [match, setMatch] = useState("");
+  
+    const authorized = user.loggedIn;
     const registered = user.registered;
     let message = user.message;
     let content;
 
-  const handleFormSubmit = async (event) => {
+  const handleFormSubmit = (event) => {
     event.preventDefault();
 
       if (password === match) {
-        try {
-          const response = await SendRegister(email, password);
+        SendRegistration(username, password).then(res => {
           dispatch({
-            type: "LOGIN_SUCCESS",
-            payload: { token: response.data.token },
+            type: "LOGIN_SUCCEEDED",
+            payload: { token: res.data.token },
           });
-        } catch (error) {
+        }).catch(error => {
           dispatch({
-            type: "LOGIN_FAILURE",
-            payload: { error: error.response.data },
+            type: "LOGIN_FAILED",
+            payload: { error: error.res.data },
           });
           setPassword("");
-        }
-      } else {
+        })
+      }
+      else {
         dispatch({
-          type: "REGISTER_FAILURE",
-          payload: { message: "Passwords don't match." },
+          type: "REGISTRATION_FAILED",
+          payload: { message: "That password doesn't match the username!" },
         });
         setPassword("");
         setMatch("");
       }
   };
 
-    if (auth) {
+    if (authorized) {
         content = <Redirect to='/ballot' />;
     } else if (registered) {
         content = <Redirect to='/login' />;

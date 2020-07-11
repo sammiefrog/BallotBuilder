@@ -1,32 +1,35 @@
 
 export const UserReducer = (state, action) => {
   switch (action.type) {
-    case "REGISTER_SUCCESS":
+    case "REGISTRATION_SUCCEEDED":
       return {
-        loggedIn: false,
+        loggedIn: true,
         registered: true,
         message: action.payload.message,
       };
 
-    case "REGISTER_FAILURE":
+    case "REGISTRATION_FAILED":
       return { loggedIn: false, message: action.payload.message };
 
-    case "LOGIN_SUCCESS":
+    case "LOGIN_SUCCEEDED":
       const token = action.payload.token.split(" ")[1];
       localStorage.setItem("token", token);
       return { loggedIn: true };
+    
+    // case "IS_LOGGED_IN":
+    //   return {loggedIn: true, message: }
 
-    case "LOGIN_FAILURE":
+    case "LOGIN_FAILED":
       return { loggedIn: false, message: action.payload.error };
 
     case "LOGOUT":
       localStorage.removeItem("token");
       return { loggedIn: false };
 
-    case "VALIDATION_SUCCESS":
+    case "VALIDATION_SUCCEEDED":
       return { loggedIn: true };
 
-    case "VALIDATION_FAILURE":
+    case "VALIDATION_FAILED":
       localStorage.removeItem("token");
       return { loggedIn: false, message: action.payload.error };
 
