@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function MediaCard() {
+export default function MediaCard(props) {
   const classes = useStyles();
 
   return (
@@ -30,10 +30,10 @@ export default function MediaCard() {
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            Candidate Name
+            {props.candidateName}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
-            Candidate Party
+            Candidate Party: {props.candidateParty}
           </Typography>
         </CardContent>
       </CardActionArea>

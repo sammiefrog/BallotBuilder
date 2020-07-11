@@ -4,7 +4,7 @@ const BASEURL = "";
 const APIKEY = "&apikey=";
 
 export default {
-  search: function(query) {
-    return axios.get(BASEURL + query + APIKEY);
+  getSenate: function() {
+    return axios.get("/api/senate")
   }
 };
