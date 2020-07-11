@@ -1,6 +1,6 @@
 
 import React, { useContext, useEffect } from 'react';
-import CenteredTabs from '../components/TabPanel'
+import TabPanel from '../components/TabPanel'
 
 // where election info goes
 // put centered tab on home page
@@ -14,7 +14,7 @@ const Home = () => {
     return ( 
         <div>
             <h1>Home Page</h1>
-            <CenteredTabs/>
+            <TabPanel/>
         </div>
      );
 }

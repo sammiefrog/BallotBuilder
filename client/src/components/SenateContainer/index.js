@@ -20,12 +20,10 @@ export default function SenateContainer() {
     useEffect( () =>{
         API.getSenate()
         .then(res => {
-            console.log(res.data)
             const cleanData = res.data.candidate.map((person) => ({
                 ...person,
                 fullName: person.firstName + " " + person.lastName
               }));
-            // console.log(res.data);
             setSenate(cleanData);
         })
         .catch(err => console.log(err));
@@ -34,7 +32,7 @@ export default function SenateContainer() {
     return (
         <Container>
             <GridList className={classes.gridList} cols={3}>
-                <h1>Bubba Wallace</h1>
+                <h1>Senate Candidates</h1>
                 {senate.map(person => (
                     <Card
                         key={person.candidateId}
