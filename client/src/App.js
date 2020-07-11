@@ -7,8 +7,8 @@ import Ballot from './pages/Ballot';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from "./pages/Register";
-import PrivateRoute from "./utils/PrivateRoute";
-// import { UserContext, UserContextProvider } from './context/contexts/UserContext';
+// import PrivateRoute from "./utils/PrivateRoute";
+import { UserContext, UserContextProvider } from './context/contexts/UserContext';
 // import { UserReducer } from './context/reducers/UserReducer';
 
 function App() {
@@ -16,19 +16,33 @@ function App() {
   // console.log(state);
 
   return (
-    <Router>
-      <div>
-        <AppBarNav />
-        <Wrapper>
-          <Switch>
-            <Route exact path={["/", "/home"]} component={Home} />
-            <PrivateRoute exact path="/ballot" component={Ballot} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-          </Switch>
-        </Wrapper>
-      </div>
-    </Router>
+    <UserContextProvider>
+      <UserContext.Consumer>
+        {({ user }) => {
+          console.log(user);
+          return (
+            <Router>
+              <div>
+                <AppBarNav />
+                <Wrapper>
+                  <Switch>
+                    <Route exact path={["/", "/home"]} component={Home} />
+                    {user.loggedIn && (
+                      <Route exact path="/ballot" component={Ballot} />
+                    )}
+                    {!user.loggedIn && (
+                      <Route exact path="/ballot" component={Login} />
+                    )}
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/register" component={Register} />
+                  </Switch>
+                </Wrapper>
+              </div>
+            </Router>
+          );
+        }}
+      </UserContext.Consumer>
+    </UserContextProvider>
   );
 }
 

@@ -48,13 +48,13 @@ const RegistrationForm = () => {
       if (password === match) {
         SendRegistration(username, password).then(res => {
           dispatch({
-            type: "LOGIN_SUCCEEDED",
+            type: "REGISTRATION_SUCCEEDED",
             payload: { token: res.data.token },
           });
         }).catch(error => {
           dispatch({
-            type: "LOGIN_FAILED",
-            payload: { error: error.res.data },
+            type: "REGISTRATION_FAILED",
+            payload: { error: error.response.data },
           });
           setPassword("");
         })
@@ -62,12 +62,13 @@ const RegistrationForm = () => {
       else {
         dispatch({
           type: "REGISTRATION_FAILED",
-          payload: { message: "That password doesn't match the username!" },
+          payload: { message: "Passwords dont match!" },
         });
         setPassword("");
         setMatch("");
       }
   };
+
 
     if (authorized) {
         content = <Redirect to='/ballot' />;
@@ -75,41 +76,52 @@ const RegistrationForm = () => {
         content = <Redirect to='/login' />;
     } else {
         content = (
-            <Container className={classes.container}>
-                <form onSubmit={handleFormSubmit} noValidate autoComplete="off">
-                    <Box>
-                        <TextField
-                            className={classes.root}
-                            id="outlined-basic username"
-                            label="Username"
-                            value={username}
-                            variant="outlined"
-                        />
-                    </Box>
-                    <Box>
-                        <TextField
-                            className={classes.root}
-                            id="outlined-basic password"
-                            label="Password"
-                            value={password}
-                            variant="outlined"
-                            onChange={(event) => setPassword(event.target.value)}
-                        />
-                    </Box>
-                    <Box>
-                        <Button
-                            type="submit"
-                            className={classes.button}
-                            variant="contained"
-                            color="secondary"
-                        >
-                            Login
-              </Button>
-                        <Typography variant="subtitle2">{message}</Typography>
-                    </Box>
-                </form>
-            </Container>
-        )
+          <Container className={classes.container}>
+            <form onSubmit={handleFormSubmit} noValidate autoComplete="off">
+              <Box>
+                <TextField
+                  className={classes.root}
+                  id="outlined-basic username"
+                  label="Username"
+                  value={username}
+                  variant="outlined"
+                  onChange={(event) => setUsername(event.target.value)}
+                />
+              </Box>
+              <Box>
+                <TextField
+                  className={classes.root}
+                  id="outlined-basic password"
+                  label="Password"
+                  value={password}
+                  variant="outlined"
+                  onChange={(event) => setPassword(event.target.value)}
+                />
+              </Box>
+              <Box>
+                <TextField
+                  className={classes.root}
+                  id="outlined-basic password"
+                  label="Re-enter Password"
+                  value={match}
+                  variant="outlined"
+                  onChange={(event) => setMatch(event.target.value)}
+                />
+              </Box>
+              <Box>
+                <Button
+                  type="submit"
+                  className={classes.button}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Register!
+                </Button>
+                <Typography variant="subtitle2">{message}</Typography>
+              </Box>
+            </form>
+          </Container>
+        );
     };
 
   return <div>{content}</div>;

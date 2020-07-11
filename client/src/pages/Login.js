@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
-// import LoginForm from '../components/LoginForm';
+import LoginForm from '../components/LoginForm';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -21,7 +21,7 @@ const Login = () => {
             Login to create or view your ballot!
           </Typography>
         </Box>
-        {/* <LoginForm /> */}
+        <LoginForm />
         <Box>
           <Typography>
             If you arent a registered user click here to register!

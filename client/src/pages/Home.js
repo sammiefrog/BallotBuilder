@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Paper from "@material-ui/core/Paper";
-
+// , { useContext, useEffect }
 // where election info goes
 // put centered tab on home page
 // each election in a different component that is rendered on click

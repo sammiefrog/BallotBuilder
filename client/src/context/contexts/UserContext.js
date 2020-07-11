@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import {UserReducer} from "../reducers/UserReducer";
 import decode from "jwt-decode";
 
-export const UserContext = createContext([]);
+export const UserContext = createContext();
 
 export const UserContextProvider = ({ children }) => {
     const [user, dispatch] = useReducer(

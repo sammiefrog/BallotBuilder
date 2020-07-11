@@ -16,9 +16,6 @@ export const UserReducer = (state, action) => {
       localStorage.setItem("token", token);
       return { loggedIn: true };
     
-    // case "IS_LOGGED_IN":
-    //   return {loggedIn: true, message: }
-
     case "LOGIN_FAILED":
       return { loggedIn: false, message: action.payload.error };
 
