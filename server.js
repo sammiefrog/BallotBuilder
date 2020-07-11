@@ -19,8 +19,9 @@ if (process.env.NODE_ENV === "production") {
 app.use(passport.initialize());
 require('./config/passport')(passport);
 
-// api routes for passport
-require('./routes/userRoutes')(app);
+// requiring routes
+require("./routes/voteSmart")(app)
+require("./routes/userRoutes")(app)
 
 // Send every other request to the React app
 // Define any API routes before this runs
