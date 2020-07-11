@@ -9,9 +9,6 @@ const candidateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  office: {
-    type: String,
-  },
   candidateId: {
     type: String,
   },

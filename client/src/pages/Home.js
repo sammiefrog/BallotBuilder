@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import CenteredTabs from '../components/CenteredTabs'
+import CenteredTabs from '../components/TabPanel'
 
 // where election info goes
 // put centered tab on home page
