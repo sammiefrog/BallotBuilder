@@ -9,6 +9,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import SenateContainer from "../SenateContainer";
 import PresidentContainer from "../PresidentContainer";
+import HouseContainer from '../HouseContainer';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -91,7 +92,7 @@ export default function FullWidthTabs() {
           <SenateContainer/>
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          <HouseContainer/>
         </TabPanel>
       </SwipeableViews>
     </div>

@@ -42,6 +42,7 @@ return (
                     key={person.candidateId}
                     candidateId={person.candidateId}
                     candidateName={person.fullName}
+                    // candidatePhoto={person.photo}
                     candidateParty={person.electionParties}
                 />
             :""))}
