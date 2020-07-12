@@ -7,5 +7,8 @@ export default {
   },
   getPresident: function() {
     return axios.get("/api/president")
+  },
+  getHouse: function() {
+    return axios.get("/api/house")
   }
 };

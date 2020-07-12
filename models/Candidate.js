@@ -12,6 +12,9 @@ const candidateSchema = new mongoose.Schema({
   candidateId: {
     type: String,
   },
+  candidatePhoto: {
+    type: String
+  },
   coreValues: {
     //link also
     type: String,
