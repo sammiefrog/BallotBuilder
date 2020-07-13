@@ -16,8 +16,6 @@ const useStyles = makeStyles({
 export default function PresidentContainer() {
     const classes = useStyles()
     const [president, setPresident] = useState([])
-    
-    // if (person.electionStatus === "Announced" && person.electionParties !== "Write-In (Independent)" && person.electionParties !== "Write-In") 
 
     useEffect(() => {
         API.getPresident()
@@ -25,7 +23,8 @@ export default function PresidentContainer() {
                 console.log(res.data)
                 const cleanData = res.data.candidate.map((person) => ({
                 ...person,
-                fullName: person.firstName + " " + person.lastName
+                fullName: person.firstName + " " + person.lastName,
+                photo: "https://static.votesmart.org/canphoto/" + person.candidateId + ".jpg"
             }));
     setPresident(cleanData);
 })
@@ -42,7 +41,7 @@ return (
                     key={person.candidateId}
                     candidateId={person.candidateId}
                     candidateName={person.fullName}
-                    // candidatePhoto={person.photo}
+                    candidatePhoto={person.photo}
                     candidateParty={person.electionParties}
                 />
             :""))}
