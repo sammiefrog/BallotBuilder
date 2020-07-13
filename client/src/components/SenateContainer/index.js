@@ -22,7 +22,7 @@ export default function SenateContainer() {
         .then(res => {
             const cleanData = res.data.candidate.map((person) => ({
                 ...person,
-                fullName: person.firstName + " " + person.lastName,
+                // fullName: person.firstName + " " + person.lastName,
                 photo: "https://static.votesmart.org/canphoto/" + person.candidateId + ".jpg"
               }));
             setSenate(cleanData);
@@ -31,19 +31,23 @@ export default function SenateContainer() {
     }, [])
 
     return (
-        <Container>
-            <GridList className={classes.gridList} cols={3}>
-                <h1>Senate Candidates</h1>
-                {senate.map(person => (
-                    <Card
-                        key={person.candidateId}
-                        candidateId={person.candidateId}
-                        candidateName={person.fullName}
-                        candidatePhoto={person.photo}
-                        candidateParty={person.electionParties}
-                    />
-                ))}
-            </GridList>
-        </Container>
+      <Container>
+        <GridList className={classes.gridList} cols={3}>
+          <h1>Senate Candidates</h1>
+          {senate.map((person) => (
+            <Card
+              key={person.candidateId}
+              candidateId={person.candidateId}
+              candidateName={person.ballotName}
+              candidatePhoto={person.photo}
+              candidateParty={person.electionParties}
+            //   action={() => {
+            //     saveCandidate(person);
+            //   }}
+              buttonContent="Save to My Ballot"
+            />
+          ))}
+        </GridList>
+      </Container>
     );
 }

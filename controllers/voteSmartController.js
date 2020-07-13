@@ -1,4 +1,5 @@
 const axios = require("axios");
+const db = require('../models');
 const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState"
 const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
 const BIOURL = "http://api.votesmart.org/CandidateBio.getBio"
@@ -34,5 +35,14 @@ module.exports = {
             .catch(err => {
                 res.json(err);
             });
+    },
+    saveCandidates: function (req, res) {
+        console.log(req.body);
+        db.Candidate.create(req.body)
+            .then(dbModel => {
+                console.log(dbModel)
+                res.json(dbModel)
+        })
+        .catch(err => res.status(422).json(err))
     }
 };

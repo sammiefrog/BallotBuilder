@@ -10,5 +10,8 @@ export default {
   },
   getHouse: function() {
     return axios.get("/api/house")
+  },
+  saveCandidate: function (data) {
+    return axios.post("/api/saved", data)
   }
 };
