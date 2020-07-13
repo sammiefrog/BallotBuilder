@@ -7,10 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Link from "@material-ui/core/Link";
+
 
 const useStyles = makeStyles({
   root: {
     maxWidth: 345,
+    margin: '10px'
   },
   media: {
     height: 140,
@@ -18,7 +21,6 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
-  console.log(props)
   const classes = useStyles();
 
   return (
@@ -39,9 +41,9 @@ export default function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Select as voting Preference
-        </Button>
+        <Link component='button' onClick={props.action} size="medium" color="primary">
+          {props.btncontent}
+        </Link>
         <Button size="small" color="primary">
           Learn More About Their Values
         </Button>

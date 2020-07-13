@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import './styles/App.css';
 import Wrapper from './components/Wrapper';
@@ -7,13 +7,9 @@ import Ballot from './pages/Ballot';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Register from "./pages/Register";
-// import PrivateRoute from "./utils/PrivateRoute";
 import { UserContext, UserContextProvider } from './context/contexts/UserContext';
-// import { UserReducer } from './context/reducers/UserReducer';
 
 function App() {
-  // const [ state, dispatch ] = useContext(UserContext);
-  // console.log(state);
 
   return (
     <UserContextProvider>
