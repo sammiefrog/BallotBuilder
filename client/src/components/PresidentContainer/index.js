@@ -4,8 +4,15 @@ import GridList from '@material-ui/core/GridList';
 import Card from '../Card'
 import API from '../../utils/API';
 import { makeStyles } from '@material-ui/core/styles';
+import Typography from "@material-ui/core/Typography";
+
 
 const useStyles = makeStyles({
+    root: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        textAlign: 'center'
+    },
     gridList: {
         width: '100%',
         height: '100%',
@@ -49,22 +56,29 @@ export default function PresidentContainer() {
     }
 
 return (
-    <Container>
-        <GridList className={classes.gridList} cols={3}>
-            <h1>Presidential Candidates</h1>
-            {president.map(person => (
-                person.electionStatus === "Announced" && person.electionParties !== "Write-In (Independent)" && person.electionParties !== "Write-In" ?
-                <Card
-                    key={person.candidateId}
-                    candidateId={person.candidateId}
-                    candidateName={person.ballotName}
-                    candidatePhoto={person.photo}
-                    candidateParty={person.electionParties}
-                    action={() => { saveCandidate(person) }}
-                    btncontent="Save to My Ballot"
-                />
-            :""))}
-        </GridList>
-    </Container>
+  <Container className={classes.root}>
+    <Typography variant="h3">Presidential Candidates</Typography>
+    <GridList className={classes.gridList} cols={3}>
+      {president.map((person) =>
+        person.electionStatus === "Announced" &&
+        person.electionParties !== "Write-In (Independent)" &&
+        person.electionParties !== "Write-In" ? (
+          <Card
+            key={person.candidateId}
+            candidateId={person.candidateId}
+            candidateName={person.ballotName}
+            candidatePhoto={person.photo}
+            candidateParty={person.electionParties}
+            action={() => {
+              saveCandidate(person);
+            }}
+            btncontent="Save to My Ballot"
+          />
+        ) : (
+          ""
+        )
+      )}
+    </GridList>
+  </Container>
 );
 }

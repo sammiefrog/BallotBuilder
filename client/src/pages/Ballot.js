@@ -7,7 +7,6 @@ import Card from '../components/Card';
 import GridList from '@material-ui/core/GridList';
 import Container from '@material-ui/core/Container';
 
-
 const useStyles = makeStyles({
   root: {
     maxWidth: "100%",
