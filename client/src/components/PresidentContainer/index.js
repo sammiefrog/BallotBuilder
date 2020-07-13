@@ -61,7 +61,7 @@ return (
                     candidatePhoto={person.photo}
                     candidateParty={person.electionParties}
                     action={() => { saveCandidate(person) }}
-                    buttonContent="Save to My Ballot"
+                    btncontent="Save to My Ballot"
                 />
             :""))}
         </GridList>

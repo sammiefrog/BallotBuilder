@@ -13,5 +13,11 @@ export default {
   },
   saveCandidate: function (data) {
     return axios.post("/api/saved", data)
+  },
+  getSaved: function () {
+    return axios.get('/api/saved')
+  },
+  deleteCandidate: function (id) {
+    return axios.delete('/api/saved/' + id)
   }
 };

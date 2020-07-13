@@ -45,7 +45,7 @@ export default function HouseContainer() {
             // action={() => {
             //   saveCandidate(person);
             // }}
-            buttonContent="Save to My Ballot"
+            btncontent="Save to My Ballot"
           />
         ))}
       </GridList>

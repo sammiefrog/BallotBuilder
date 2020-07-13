@@ -20,7 +20,6 @@ const useStyles = makeStyles({
 });
 
 export default function MediaCard(props) {
-  console.log(props)
   const classes = useStyles();
 
   return (
@@ -41,8 +40,8 @@ export default function MediaCard(props) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Link component='button' onClick={props.action} size="small" color="primary">
-          {props.buttonContent}
+        <Link component='button' onClick={props.action} size="medium" color="primary">
+          {props.btncontent}
         </Link>
         <Button size="small" color="primary">
           Learn More About Their Values

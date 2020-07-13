@@ -6,43 +6,55 @@ const BIOURL = "http://api.votesmart.org/CandidateBio.getBio"
 
 // Defining methods for the voteSmart controller
 module.exports = {
-    presidentialCandidates: async function (req, res) {
-        axios
-            .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
-            .then((results) => {
-                res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    senateCandidates: function (req, res) {
-        axios
-            .get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
-            .then(results => {
-                res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    houseCandidates: function (req, res) {
-        axios
-            .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
-            .then(results => {
-                res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    saveCandidates: function (req, res) {
-        console.log(req.body);
-        db.Candidate.create(req.body)
-            .then(dbModel => {
-                console.log(dbModel)
-                res.json(dbModel)
-        })
-        .catch(err => res.status(422).json(err))
-    }
+  presidentialCandidates: async function (req, res) {
+    axios
+      .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
+      .then((results) => {
+        res.json(results.data.candidateList);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
+  senateCandidates: function (req, res) {
+    axios
+      .get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
+      .then((results) => {
+        res.json(results.data.candidateList);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
+  houseCandidates: function (req, res) {
+    axios
+      .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
+      .then((results) => {
+        res.json(results.data.candidateList);
+      })
+      .catch((err) => {
+        res.json(err);
+      });
+  },
+  saveCandidates: function (req, res) {
+    console.log(req.body);
+    db.Candidate.create(req.body)
+      .then((dbModel) => {
+        console.log(dbModel);
+        res.json(dbModel);
+      })
+      .catch((err) => res.status(422).json(err));
+  },
+  getSavedCandidates: function (req, res) {
+    db.Candidate.find(req.query)
+      .sort({ createdAt: -1 })
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
+  deleteCandidate: function (req, res) {
+    db.Candidate.findById({ _id: req.params.id })
+      .then((dbModel) => dbModel.remove())
+      .then((dbModel) => res.json(dbModel))
+      .catch((err) => res.status(422).json(err));
+  },
 };

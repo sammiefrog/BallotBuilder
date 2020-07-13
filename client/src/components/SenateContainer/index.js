@@ -44,7 +44,7 @@ export default function SenateContainer() {
             //   action={() => {
             //     saveCandidate(person);
             //   }}
-              buttonContent="Save to My Ballot"
+              btncontent="Save to My Ballot"
             />
           ))}
         </GridList>
