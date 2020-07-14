@@ -1,5 +1,5 @@
 
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import TabPanel from '../components/TabPanel'
 
 // where election info goes

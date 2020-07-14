@@ -43,7 +43,6 @@ export default function PresidentContainer() {
     }
 
     const saveCandidate = (data) => {
-        console.log(data)
         API.saveCandidate({
             candidateName: data.ballotName,
             candidateParty: data.electionParties,

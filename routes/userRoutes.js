@@ -13,5 +13,5 @@ module.exports = (app) => {
           console.log(req.user)
         res.status(200).send("Authorized.");
       }
-    );
+  );
 }
