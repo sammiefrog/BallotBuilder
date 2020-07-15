@@ -19,5 +19,11 @@ export default {
   },
   deleteCandidate: function (id) {
     return axios.delete('/api/saved/' + id)
-  }
+  },
+  getDistrict: function(zip) {
+    return axios.get("/api/district/" + zip)
+  },
+  getHouseCandidates: function(distId) {
+    return axios.get("/api/candidate/" + distId)
+  }, 
 };
