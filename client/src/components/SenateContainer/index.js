@@ -62,7 +62,10 @@ export default function SenateContainer() {
         <Typography variant="h3">Senate Candidates</Typography>
 
         <GridList className={classes.gridList} cols={3}>
-          {senate.map((person) => (
+          {senate.map((person) => 
+          person.electionStatus === "Running" &&
+          person.electionParties !== "Write-In (Independent)" &&
+          person.electionParties !== "Write-In" ? (
             <Card
               key={person.candidateId}
               candidateId={person.candidateId}
@@ -74,6 +77,8 @@ export default function SenateContainer() {
               }}
               btncontent="Save to My Ballot"
             />
+            ) : (
+              ""
           ))}
         </GridList>
       </Container>

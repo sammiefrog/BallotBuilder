@@ -2,11 +2,12 @@ const axios = require("axios");
 const db = require('../models');
 const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState"
 const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
-const BIOURL = "http://api.votesmart.org/CandidateBio.getBio"
+const DISTRICTURL = "http://api.votesmart.org/District.getByZip"
+const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict"
 
 // Defining methods for the voteSmart controller
 module.exports = {
-  presidentialCandidates: async function (req, res) {
+  presidentialCandidates: function (req, res) {
     axios
       .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
       .then((results) => {
@@ -35,6 +36,33 @@ module.exports = {
       .catch((err) => {
         res.json(err);
       });
+  },
+  districtByZip: function (req, res) {
+    const zip = req.params.zip
+    console.log(zip)
+    axios
+    .get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON")
+    .then((results) => {
+      console.log(results.data.districtList.district[0].districtId)
+      res.json(results.data.districtList.district[0].districtId)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
+  },
+  houseCandidatesByDistrict: function(req, res) {
+    const distId = req.params.distId
+    console.log(distId)
+    console.log(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
+    axios
+    .get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
+    .then((results) => {
+      console.log(results)
+      res.json(results.data.candidateList)
+    })
+    .catch((err) => {
+      res.json(err)
+    })
   },
   saveCandidates: function (req, res) {
     console.log(req.body);
