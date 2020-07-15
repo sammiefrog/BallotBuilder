@@ -53,6 +53,7 @@ module.exports = {
   houseCandidatesByDistrict: function(req, res) {
     const distId = req.params.distId
     console.log(distId)
+    console.log(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
     axios
     .get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
     .then((results) => {
