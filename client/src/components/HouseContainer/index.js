@@ -99,7 +99,10 @@ export default function HouseContainer() {
  </Button>
       <Typography variant="h3">House Candidates</Typography>
       <GridList className={classes.gridList} cols={3}>
-        {house.map((person) => (
+        {house.map((person) => 
+        person.electionStatus === "Running" &&
+        person.electionParties !== "Write-In (Independent)" &&
+        person.electionParties !== "Write-In" ? (
           <Card
             key={person.candidateId}
             candidateId={person.candidateId}
@@ -111,6 +114,8 @@ export default function HouseContainer() {
             }}
             btncontent="Save to My Ballot"
           />
+          ) : (
+            ""
         ))}
       </GridList>
     </Container>
