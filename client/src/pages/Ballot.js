@@ -37,20 +37,22 @@ const Ballot = () => {
     loadCandidates();
   }, []);
 
-  const loadCandidates = () => {
-    API.getSaved()
-      .then(res => {
-        console.log(res.data)
-        setCandidates(res.data)
-      })
-      .catch(err => console.log(err))
-  }
+  const loadCandidates = async () => {
+    try {
+      const response = await API.getSaved();
+      setCandidates(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-  const deleteCandidate = (id) => {
-    API.deleteCandidate(id)
-      .then(res => loadCandidates())
-    .catch(err => console.log(err))
-  }
+  const deleteCandidate = async (id) => {
+    try {
+      await API.deleteCandidate(id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   
     return (
