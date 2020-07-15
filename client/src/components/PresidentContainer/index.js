@@ -28,30 +28,29 @@ export default function PresidentContainer() {
         getPresident();
     }, [])
 
-    const getPresident = () => {
-        API.getPresident()
-        .then((res) => {
-            const cleanData = res.data.candidate.map((person) => ({
+  const getPresident = async () => {
+      try{
+        const response = await API.getPresident()
+          const cleanData = response.data.candidate.map((person) => ({
              ...person,
-            //  fullName: person.firstName + " " + person.lastName,
              photo:
              "https://static.votesmart.org/canphoto/" + person.candidateId + ".jpg",
-        }));
+          }));
         setPresident(cleanData);
-        })
-        .catch((err) => console.log(err));
-    }
+        } catch(error){ console.log(error)};
+  }
 
-    const saveCandidate = (data) => {
-        API.saveCandidate({
-            candidateName: data.ballotName,
-            candidateParty: data.electionParties,
-            candidateId: data.candidateId,
-            candidatePhoto: data.photo
-                ? data.photo
-                : 'https://via.placeholder.com/150.png?text=No+Image+Found',
-        }).then(res => console.log(res))
-            .catch(err => console.log(err));
+    const saveCandidate = async (data) => {
+      try {
+        const response = await API.saveCandidate({
+          candidateName: data.ballotName,
+          candidateParty: data.electionParties,
+          candidateId: data.candidateId,
+          candidatePhoto: data.photo
+            ? data.photo
+            : 'https://via.placeholder.com/150.png?text=No+Image+Found',
+        })
+      } catch (err) { console.log(err) };
     }
 
 return (

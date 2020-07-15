@@ -27,33 +27,33 @@ export default function SenateContainer() {
        getSenate()
     }, [])
   
-  const getSenate = () => {
-     API.getSenate()
-       .then((res) => {
-         const cleanData = res.data.candidate.map((person) => ({
+  const getSenate = async () => {
+    try{
+     const response = await API.getSenate()
+      const cleanData = response.data.candidate.map((person) => ({
            ...person,
            photo:
              "https://static.votesmart.org/canphoto/" +
              person.candidateId +
              ".jpg",
          }));
-         setSenate(cleanData);
-       })
-       .catch((err) => console.log(err));
+      setSenate(cleanData);
+    }catch(err){console.log(err);};
   }
 
-  const saveCandidate = (data) => {
-    console.log(data);
-    API.saveCandidate({
-      candidateName: data.ballotName,
-      candidateParty: data.electionParties,
-      candidateId: data.candidateId,
-      candidatePhoto: data.photo
-        ? data.photo
-        : "https://via.placeholder.com/150.png?text=No+Image+Found",
-    })
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+  const saveCandidate = async (data) => {
+    try {
+      await API.saveCandidate({
+        candidateName: data.ballotName,
+        candidateParty: data.electionParties,
+        candidateId: data.candidateId,
+        candidatePhoto: data.photo
+          ? data.photo
+          : "https://via.placeholder.com/150.png?text=No+Image+Found",
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
 

@@ -42,22 +42,23 @@ const RegistrationForm = () => {
     let message = user.message;
     let content;
 
-  const handleFormSubmit = (event) => {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
 
-      if (password === match) {
-        SendRegistration(username, password).then(res => {
+    if (password === match) {
+        try{
+        const response = await SendRegistration(username, password)
           dispatch({
             type: "REGISTRATION_SUCCEEDED",
-            payload: { token: res.data.token },
+            payload: { token: response.data.token },
           });
-        }).catch(error => {
+        } catch (error) {
           dispatch({
             type: "REGISTRATION_FAILED",
             payload: { error: error.response.data },
           });
           setPassword("");
-        })
+        }
       }
       else {
         dispatch({
