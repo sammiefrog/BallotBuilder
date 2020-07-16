@@ -4,10 +4,11 @@ const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState"
 const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
 const DISTRICTURL = "http://api.votesmart.org/District.getByZip"
 const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict"
+const VALUESURL = "http://api.votesmart.org/Rating.getCandidateRating"
 
 // Defining methods for the voteSmart controller
 module.exports = {
-  presidentialCandidates: function (req, res) {
+  presidentialCandidates: (req, res) => {
     axios
       .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
       .then((results) => {
@@ -17,7 +18,7 @@ module.exports = {
         res.json(err);
       });
   },
-  senateCandidates: function (req, res) {
+  senateCandidates: (req, res) => {
     axios
       .get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
       .then((results) => {
@@ -27,17 +28,30 @@ module.exports = {
         res.json(err);
       });
   },
-  houseCandidates: function (req, res) {
+  candidateValues: (req, res) => {
+    const candId = req.params.candId
+    console.log(candId)
     axios
-      .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
+      .get(VALUESURL + APIKEY + "&candidateId=" + candId + "&o=JSON")
       .then((results) => {
-        res.json(results.data.candidateList);
+        console.log(results.data.candidateRating)
+        res.json(results.data.candidateRating);
       })
       .catch((err) => {
         res.json(err);
       });
   },
-  districtByZip: function (req, res) {
+  // houseCandidates: function (req, res) {
+  //   axios
+  //     .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
+  //     .then((results) => {
+  //       res.json(results.data.candidateList);
+  //     })
+  //     .catch((err) => {
+  //       res.json(err);
+  //     });
+  // },
+  districtByZip: (req, res) => {
     const zip = req.params.zip
     console.log(zip)
     axios
@@ -50,7 +64,7 @@ module.exports = {
       res.json(err)
     })
   },
-  houseCandidatesByDistrict: function(req, res) {
+  houseCandidatesByDistrict: (req, res) => {
     const distId = req.params.distId
     console.log(distId)
     console.log(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
@@ -64,7 +78,7 @@ module.exports = {
       res.json(err)
     })
   },
-  saveCandidates: function (req, res) {
+  saveCandidates: (req, res) => {
     console.log(req.body);
     db.Candidate.create(req.body)
       .then((dbModel) => {
@@ -73,13 +87,13 @@ module.exports = {
       })
       .catch((err) => res.status(422).json(err));
   },
-  getSavedCandidates: function (req, res) {
+  getSavedCandidates: (req, res) => {
     db.Candidate.find(req.query)
       .sort({ createdAt: -1 })
       .then((dbModel) => res.json(dbModel))
       .catch((err) => res.status(422).json(err));
   },
-  deleteCandidate: function (req, res) {
+  deleteCandidate: (req, res) => {
     db.Candidate.findById({ _id: req.params.id })
       .then((dbModel) => dbModel.remove())
       .then((dbModel) => res.json(dbModel))
