@@ -25,5 +25,8 @@ export default {
   },
   getHouseCandidates: function(distId) {
     return axios.get("/api/candidate/" + distId)
-  }, 
+  },
+  // getValues: function(candId) {
+  //   return axios.get("/api/values/" + candId)
+  // },
 };

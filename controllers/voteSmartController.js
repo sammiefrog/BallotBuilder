@@ -4,7 +4,7 @@ const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState"
 const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
 const DISTRICTURL = "http://api.votesmart.org/District.getByZip"
 const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict"
-const VALUESURL = "http://api.votesmart.org/Rating.getCandidateRating"
+// const VALUESURL = "http://api.votesmart.org/Rating.getCandidateRating"
 
 // Defining methods for the voteSmart controller
 module.exports = {
@@ -28,19 +28,19 @@ module.exports = {
         res.json(err);
       });
   },
-  candidateValues: (req, res) => {
-    const candId = req.params.candId
-    console.log(candId)
-    axios
-      .get(VALUESURL + APIKEY + "&candidateId=" + candId + "&o=JSON")
-      .then((results) => {
-        console.log(results.data.candidateRating)
-        res.json(results.data.candidateRating);
-      })
-      .catch((err) => {
-        res.json(err);
-      });
-  },
+  // candidateValues: (req, res) => {
+  //   const candId = req.params.candId
+  //   console.log(candId)
+  //   axios
+  //     .get(VALUESURL + APIKEY + "&candidateId=" + candId + "&o=JSON")
+  //     .then((results) => {
+  //       console.log(results.data.candidateRating)
+  //       res.json(results.data.candidateRating);
+  //     })
+  //     .catch((err) => {
+  //       res.json(err);
+  //     });
+  // },
   // houseCandidates: function (req, res) {
   //   axios
   //     .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
