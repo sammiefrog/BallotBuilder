@@ -5,6 +5,7 @@ import Wrapper from './components/Wrapper';
 import AppBarNav from './components/AppBarNav';
 import Ballot from './pages/Ballot';
 import Home from './pages/Home';
+import About from './pages/About';
 import Login from './pages/Login';
 import Register from "./pages/Register";
 import { UserContext, UserContextProvider } from './context/contexts/UserContext';
@@ -31,6 +32,7 @@ function App() {
                     )}
                     <Route exact path="/login" component={Login} />
                     <Route exact path="/register" component={Register} />
+                    <Route exact path="/about" component={About} />
                   </Switch>
                 </Wrapper>
               </div>
