@@ -49,6 +49,7 @@ const Ballot = () => {
   const deleteCandidate = async (id) => {
     try {
       await API.deleteCandidate(id);
+      loadCandidates();
     } catch (err) {
       console.log(err);
     }
@@ -69,10 +70,12 @@ const Ballot = () => {
               candidateName={candidate.candidateName}
               candidatePhoto={candidate.candidatePhoto}
               candidateParty={candidate.candidateParty}
+              coreValues={candidate.coreValues}
               action={() => {
                 deleteCandidate(candidate._id);
               }}
               btncontent="Remove from My Ballot"
+              coreValues={candidate.coreValues}
             />
           ))}
         </GridList>
