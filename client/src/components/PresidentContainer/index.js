@@ -23,6 +23,7 @@ const useStyles = makeStyles({
 export default function PresidentContainer() {
     const classes = useStyles()
     const [president, setPresident] = useState([])
+    // const [values, setValues] = useState([])
 
     useEffect(() => {
         getPresident();
@@ -33,8 +34,8 @@ export default function PresidentContainer() {
         const response = await API.getPresident()
           const cleanData = response.data.candidate.map((person) => ({
              ...person,
-             photo:
-             "https://static.votesmart.org/canphoto/" + person.candidateId + ".jpg",
+             coreValues:
+             "http://votesmart.org/issue_rating_category.php?can_id=" + person.candidateId,
           }));
         setPresident(cleanData);
         } catch(error){ console.log(error)};
@@ -46,9 +47,8 @@ export default function PresidentContainer() {
           candidateName: data.ballotName,
           candidateParty: data.electionParties,
           candidateId: data.candidateId,
-          candidatePhoto: data.photo
-            ? data.photo
-            : 'https://via.placeholder.com/150.png?text=No+Image+Found',
+          coreValues:
+             data.coreValues,
         })
       } catch (err) { console.log(err) };
     }
@@ -71,6 +71,7 @@ return (
               saveCandidate(person);
             }}
             btncontent="Save to My Ballot"
+            coreValues ={person.coreValues}
           />
         ) : (
           ""

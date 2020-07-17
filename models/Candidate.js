@@ -16,8 +16,7 @@ const candidateSchema = new mongoose.Schema({
     type: String
   },
   coreValues: {
-    //link also
-    type: String,
+    type: String
   },
   created: {
     type: Date,

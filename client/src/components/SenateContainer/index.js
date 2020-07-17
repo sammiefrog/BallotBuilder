@@ -32,10 +32,8 @@ export default function SenateContainer() {
      const response = await API.getSenate()
       const cleanData = response.data.candidate.map((person) => ({
            ...person,
-           photo:
-             "https://static.votesmart.org/canphoto/" +
-             person.candidateId +
-             ".jpg",
+           coreValues:
+             "http://votesmart.org/issue_rating_category.php?can_id=" + person.candidateId,
          }));
       setSenate(cleanData);
     }catch(err){console.log(err);};
@@ -47,9 +45,7 @@ export default function SenateContainer() {
         candidateName: data.ballotName,
         candidateParty: data.electionParties,
         candidateId: data.candidateId,
-        candidatePhoto: data.photo
-          ? data.photo
-          : "https://via.placeholder.com/150.png?text=No+Image+Found",
+        coreValues: data.coreValues,
       });
     } catch (err) {
       console.log(err);
@@ -76,6 +72,7 @@ export default function SenateContainer() {
                 saveCandidate(person);
               }}
               btncontent="Save to My Ballot"
+              coreValues ={person.coreValues}
             />
             ) : (
               ""

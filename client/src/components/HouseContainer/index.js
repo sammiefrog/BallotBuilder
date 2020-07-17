@@ -60,10 +60,8 @@ export default function HouseContainer() {
       console.log(res)
       const cleanData = res.data.candidate.map((person) => ({
         ...person,
-        photo:
-          "https://static.votesmart.org/canphoto/" +
-          person.candidateId +
-          ".jpg",
+        coreValues:
+          "http://votesmart.org/issue_rating_category.php?can_id=" + person.candidateId,
       }));
       setHouse(cleanData);
     }
@@ -76,9 +74,8 @@ export default function HouseContainer() {
         candidateName: data.ballotName,
         candidateParty: data.electionParties,
         candidateId: data.candidateId,
-        candidatePhoto: data.photo
-          ? data.photo
-          : "https://via.placeholder.com/150.png?text=No+Image+Found",
+        coreValues:
+          data.coreValues,
       })
     }
     catch (err) { console.log(err) };
@@ -99,24 +96,25 @@ export default function HouseContainer() {
  </Button>
       <Typography variant="h3">House Candidates</Typography>
       <GridList className={classes.gridList} cols={3}>
-        {house.map((person) => 
-        person.electionStatus === "Running" &&
-        person.electionParties !== "Write-In (Independent)" &&
-        person.electionParties !== "Write-In" ? (
-          <Card
-            key={person.candidateId}
-            candidateId={person.candidateId}
-            candidateName={person.ballotName}
-            candidatePhoto={person.photo}
-            candidateParty={person.electionParties}
-            action={() => {
-              saveCandidate(person);
-            }}
-            btncontent="Save to My Ballot"
-          />
-          ) : (
-            ""
-        ))}
+        {house.map((person) =>
+          person.electionStatus === "Running" &&
+            person.electionParties !== "Write-In (Independent)" &&
+            person.electionParties !== "Write-In" ? (
+              <Card
+                key={person.candidateId}
+                candidateId={person.candidateId}
+                candidateName={person.ballotName}
+                candidatePhoto={person.photo}
+                candidateParty={person.electionParties}
+                action={() => {
+                  saveCandidate(person);
+                }}
+                btncontent="Save to My Ballot"
+                coreValues ={person.coreValues}
+              />
+            ) : (
+              ""
+            ))}
       </GridList>
     </Container>
   );
