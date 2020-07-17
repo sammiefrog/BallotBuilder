@@ -1,61 +1,71 @@
-import React, { useContext, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Redirect } from 'react-router-dom';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
+import React, { useContext, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import { Redirect } from "react-router-dom";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+// import Button from "@material-ui/core/Button";
 import Link from "@material-ui/core/Link";
-import { UserContext } from '../../context/contexts/UserContext'
+import Typography from "@material-ui/core/Typography";
+import { UserContext } from "../../context/contexts/UserContext";
+
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    minWidth: 275,
     margin: '10px'
   },
-  media: {
-    height: 140,
+  title: {
+    fontSize: 14,
+  },
+  pos: {
+    marginBottom: 12,
   },
 });
 
-export default function MediaCard(props) {
+function OutlinedCard(props) {
   const classes = useStyles();
   const { user } = useContext(UserContext);
-  const [redirect, setRedirect] = useState(false);
-
-  if (redirect) {
-    return (<Redirect to='/login' />)
-  } else {
-    return (
-      <Card className={classes.root}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={props.candidatePhoto}
-            title={props.candidateName}
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.candidateName}
-            </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Candidate Party: {props.candidateParty}
-            </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <Link component='button' onClick={user.loggedIn ? props.action : () => setRedirect(true)} size="medium" color="primary">
-            {props.btncontent}
-          </Link>
-          <Link target="_blank"
-            rel="noopener noreferrer" href={props.coreValues} size="medium" color="primary">
-            Learn More About Their Values
-          </Link>
-        </CardActions>
-      </Card >
-    );
-  }
+    const [redirect, setRedirect] = useState(false);
+    
+    if (redirect) {
+        return (<Redirect to='/login' />)
+    } else {
+        return (
+          <Card className={classes.root} variant="outlined">
+            <CardContent>
+              <Typography
+                // className={classes.title}
+                variant="h5"
+                component="h2"
+                color="primary"
+                gutterBottom
+              >
+                {props.candidateName}
+              </Typography>
+              <Typography className={classes.title}>
+                Candidate Party: {props.candidateParty}
+              </Typography>
+            </CardContent>
+            <CardActions>
+              <Link
+                component="button"
+                onClick={user.loggedIn ? props.action : () => setRedirect(true)}
+                size="small"
+              >
+                {props.btncontent}
+              </Link>
+              <Link
+                target="_blank"
+                rel="noopener noreferrer"
+                href={props.coreValues}
+                size="small"
+              >
+                Learn More About Their Values
+              </Link>
+            </CardActions>
+          </Card>
+        );
+    }
 }
+export default OutlinedCard;

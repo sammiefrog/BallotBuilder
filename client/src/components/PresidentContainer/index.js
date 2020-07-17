@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import GridList from '@material-ui/core/GridList';
-import Card from '../Card'
+import OutlinedCard from "../Card/index";
 import API from '../../utils/API';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
-
 
 const useStyles = makeStyles({
     root: {
@@ -43,12 +42,11 @@ export default function PresidentContainer() {
 
     const saveCandidate = async (data) => {
       try {
-        const response = await API.saveCandidate({
+        await API.saveCandidate({
           candidateName: data.ballotName,
           candidateParty: data.electionParties,
           candidateId: data.candidateId,
-          coreValues:
-             data.coreValues,
+          coreValues: data.coreValues,
         })
       } catch (err) { console.log(err) };
     }
@@ -61,7 +59,7 @@ return (
         person.electionStatus === "Announced" &&
         person.electionParties !== "Write-In (Independent)" &&
         person.electionParties !== "Write-In" ? (
-          <Card
+          <OutlinedCard
             key={person.candidateId}
             candidateId={person.candidateId}
             candidateName={person.ballotName}
@@ -71,7 +69,7 @@ return (
               saveCandidate(person);
             }}
             btncontent="Save to My Ballot"
-            coreValues ={person.coreValues}
+            coreValues={person.coreValues}
           />
         ) : (
           ""

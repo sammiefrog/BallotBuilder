@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Container from '@material-ui/core/Container';
 import GridList from '@material-ui/core/GridList';
-import Card from '../Card'
+import OutlinedCard from '../Card'
 import API from '../../utils/API';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography } from "@material-ui/core";
@@ -100,7 +100,7 @@ export default function HouseContainer() {
           person.electionStatus === "Running" &&
             person.electionParties !== "Write-In (Independent)" &&
             person.electionParties !== "Write-In" ? (
-              <Card
+              <OutlinedCard
                 key={person.candidateId}
                 candidateId={person.candidateId}
                 candidateName={person.ballotName}

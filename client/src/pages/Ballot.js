@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
 import Typography from "@material-ui/core/Typography";
 import API from '../utils/API';
-import Card from '../components/Card';
+import OutlinedCard from '../components/Card';
 import GridList from '@material-ui/core/GridList';
 import Container from '@material-ui/core/Container';
 
@@ -49,6 +49,7 @@ const Ballot = () => {
   const deleteCandidate = async (id) => {
     try {
       await API.deleteCandidate(id);
+      loadCandidates();
     } catch (err) {
       console.log(err);
     }
@@ -62,17 +63,19 @@ const Ballot = () => {
         </Box>
         <GridList className={classes.gridList} cols={3}>
           {candidates.map((candidate, i) => (
-            <Card
+            <OutlinedCard
               key={i}
               id={candidate._id}
               candidateId={candidate.candidateId}
               candidateName={candidate.candidateName}
               candidatePhoto={candidate.candidatePhoto}
               candidateParty={candidate.candidateParty}
+              coreValues={candidate.coreValues}
               action={() => {
                 deleteCandidate(candidate._id);
               }}
               btncontent="Remove from My Ballot"
+              coreValues={candidate.coreValues}
             />
           ))}
         </GridList>
