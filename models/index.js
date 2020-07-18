@@ -1,4 +1,3 @@
 module.exports = {
-    Candidate: require('./Candidate')
-    
+    Candidate: require("./Candidate")
 };
