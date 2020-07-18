@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const SendRegistration = (username, password) => {
     const reply = axios({
-      method: "POST",
-      url: "/api/user/register",
-      data: { username, password },
+        method: "POST",
+        url: "/api/user/register",
+        data: { username, password }
     });
     return reply;
-}
+};

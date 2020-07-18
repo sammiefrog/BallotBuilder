@@ -12,90 +12,90 @@ import GitHubIcon from "@material-ui/icons/GitHub";
 import LinkedInIcon from "@material-ui/icons/LinkedIn";
 import MailOutlineIcon from "@material-ui/icons/MailOutline";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    maxWidth: 500,
-    maxHeight: 900,
-    height: 900,
-    justifyContent: "center",
-    margin: "25px",
-    background: "#33c9dc",
-    [theme.breakpoints.down("sm")]: {
-      backgroundColor: theme.palette.secondary.main,
-      marginBottom: "55px",
+const useStyles = makeStyles(theme => ({
+    root: {
+        maxWidth: 500,
+        maxHeight: 900,
+        height: 900,
+        justifyContent: "center",
+        margin: "25px",
+        background: "#33c9dc",
+        [theme.breakpoints.down("sm")]: {
+            backgroundColor: theme.palette.secondary.main,
+            marginBottom: "55px"
+        },
+        [theme.breakpoints.down("lg")]: {
+            backgroundColor: "#33c9dc",
+            marginBottom: "55px"
+        }
     },
-    [theme.breakpoints.down("lg")]: {
-      backgroundColor: "#33c9dc",
-      marginBottom: "55px",
+    media: {
+        height: "350px",
+        paddingTop: "56.25%"
     },
-  },
-  media: {
-    height: "350px",
-    paddingTop: "56.25%",
-  },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  },
-  expandOpen: {
-    transform: "rotate(180deg)",
-    marginBottom: "20px",
-  },
-  avatar: {
-    backgroundColor: "#f73378",
-  },
+    expand: {
+        transform: "rotate(0deg)",
+        marginLeft: "auto",
+        transition: theme.transitions.create("transform", {
+            duration: theme.transitions.duration.shortest
+        })
+    },
+    expandOpen: {
+        transform: "rotate(180deg)",
+        marginBottom: "20px"
+    },
+    avatar: {
+        backgroundColor: "#f73378"
+    }
 }));
 
 export default function JoshCard() {
-  const classes = useStyles();
+    const classes = useStyles();
 
-  return (
-    <Card className={classes.root}>
-      <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            J
-          </Avatar>
-        }
-        title="Josh Everett"
-        subheader="Web Developer Trying to Make them Full Stacks"
-      />
-      <CardMedia
-        className={classes.media}
-        image={require("../../assets/images/me.png")} 
-        title="Josh"
-      />
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          Whoa there! You registered to vote right? I started voting because I'm a Black man from the Deep South, and will continue to vote for the remainder of my membership in this race. I hope you have a reason to do the same. Keepin' it civic. No Honda.
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton
-          aria-label="email"
-          href="mailto:josheverett93@gmail.com"
-          target="_blank"
-        >
-          <MailOutlineIcon />
-        </IconButton>
-        <IconButton
-          aria-label="github"
-          href="https://github.com/jeverett93"
-          target="_blank"
-        >
-          <GitHubIcon />
-        </IconButton>
-        <IconButton
-          aria-label="linkedin"
-          href="https://www.linkedin.com/in/joshua-everett-087a4649/"
-          target="_blank"
-        >
-          <LinkedInIcon />
-        </IconButton>
-      </CardActions>
-    </Card>
-  );
+    return (
+        <Card className={classes.root}>
+            <CardHeader
+                avatar={
+                    <Avatar aria-label="recipe" className={classes.avatar}>
+                        J
+                    </Avatar>
+                }
+                title="Josh Everett"
+                subheader="Web Developer Trying to Make them Full Stacks"
+            />
+            <CardMedia
+                className={classes.media}
+                image={require("../../assets/images/me.png")}
+                title="Josh"
+            />
+            <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                    Whoa there! You registered to vote right? I started voting because I'm a Black
+                    man from the Deep South, and will continue to vote for the remainder of my
+                    membership in this race. I hope you have a reason to do the same. Keepin' it
+                    civic. No Honda.
+                </Typography>
+            </CardContent>
+            <CardActions disableSpacing>
+                <IconButton
+                    aria-label="email"
+                    href="mailto:josheverett93@gmail.com"
+                    target="_blank">
+                    <MailOutlineIcon />
+                </IconButton>
+                <IconButton
+                    aria-label="github"
+                    href="https://github.com/jeverett93"
+                    target="_blank">
+                    <GitHubIcon />
+                </IconButton>
+                <IconButton
+                    aria-label="linkedin"
+                    href="https://www.linkedin.com/in/joshua-everett-087a4649/"
+                    target="_blank">
+                    <LinkedInIcon />
+                </IconButton>
+            </CardActions>
+        </Card>
+    );
 }
