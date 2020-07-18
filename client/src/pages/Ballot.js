@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import Box from '@material-ui/core/Box';
+import React, { useEffect, useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
 import API from '../utils/API';
 import OutlinedCard from '../components/Card';
@@ -32,32 +32,31 @@ const useStyles = makeStyles({
 });
 
 const Ballot = () => {
-  const classes = useStyles();
-  const [candidates, setCandidates] = useState([]);
+    const classes = useStyles();
+    const [candidates, setCandidates] = useState([]);
 
-  useEffect(() => {
-    loadCandidates();
-  }, []);
+    useEffect(() => {
+        loadCandidates();
+    }, []);
 
-  const loadCandidates = async () => {
-    try {
-      const response = await API.getSaved();
-      setCandidates(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    const loadCandidates = async () => {
+        try {
+            const response = await API.getSaved();
+            setCandidates(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
-  const deleteCandidate = async (id) => {
-    try {
-      await API.deleteCandidate(id);
-      loadCandidates();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-  
-  
+    const deleteCandidate = async id => {
+        try {
+            await API.deleteCandidate(id);
+            loadCandidates();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
       <Container className={classes.root}>
         <PrefForm />
@@ -84,6 +83,6 @@ const Ballot = () => {
         </GridList>
       </Container>
     );
-}
- 
+};
+
 export default Ballot;

@@ -7,10 +7,10 @@ const {
   savePlan,
   saveCandidates,
     getSavedCandidates,
-  deleteCandidate
+    deleteCandidate
 } = require("../controllers/voteSmartController");
 
-module.exports = (app) => {
+module.exports = app => {
     app.get("/api/president", presidentialCandidates);
     app.get("/api/senate", senateCandidates);
     // app.get("/api/house", houseCandidates);
@@ -20,7 +20,5 @@ module.exports = (app) => {
     app.post('/api/plan', savePlan);
     app.post("/api/saved", saveCandidates);
     app.get("/api/saved", getSavedCandidates);
-    app.delete("/api/saved/:id", deleteCandidate)
-
-}
-
+    app.delete("/api/saved/:id", deleteCandidate);
+};

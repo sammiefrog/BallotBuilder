@@ -1,10 +1,9 @@
 const axios = require("axios");
-const db = require('../models');
-const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState"
-const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21"
-const DISTRICTURL = "http://api.votesmart.org/District.getByZip"
-const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict"
-// const VALUESURL = "http://api.votesmart.org/Rating.getCandidateRating"
+const db = require("../models");
+const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState";
+const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21";
+const DISTRICTURL = "http://api.votesmart.org/District.getByZip";
+const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict";
 
 // Defining methods for the voteSmart controller
 module.exports = {
