@@ -33,8 +33,10 @@ const About = () => {
                 href="https://sos.tn.gov/products/elections/absentee-voting">visit here.</a> To find your polling place, <a target="_blank"
                 rel="noopener noreferrer"
                 href="https://web.go-vote-tn.elections.tn.gov/">visit here.</a> Whether you binge news or getting informed for the first time, voting is for everyone.</Typography>
+                 <Box display="flex" flexDirection="row" p={1} m={1} bgcolor="background.paper" className={classes.scard}>
                 <SammanthaCard/> 
                 <JoshCard/>
+                </Box>
                
         </Box>
     )
