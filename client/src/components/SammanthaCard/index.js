@@ -65,7 +65,7 @@ export default function SammanthaCard() {
       />
       <CardMedia
         className={classes.media}
-        image={require("../../assets/images/circle.jpeg")}
+        image={require("../../assets/images/sammanthaface.jpg")}
         title="Sammantha"
       />
       <CardContent>
