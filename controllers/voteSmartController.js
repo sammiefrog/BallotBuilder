@@ -78,6 +78,15 @@ module.exports = {
       res.json(err)
     })
   },
+  savePlan: (req, res) => {
+    console.log(req.body)
+    db.Plan.create(req.body)
+      .then((dbModel) => {
+        console.log(dbModel);
+        res.json(dbModel);
+      })
+      .catch((err) => res.status(422).json(err));
+  },
   saveCandidates: (req, res) => {
     console.log(req.body);
     db.Candidate.create(req.body)

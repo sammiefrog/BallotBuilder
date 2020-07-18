@@ -26,6 +26,9 @@ export default {
   getHouseCandidates: function(distId) {
     return axios.get("/api/candidate/" + distId)
   },
+  savePlan: function (plan) {
+    return axios.post("/api/plan", plan)
+  }
   // getValues: function(candId) {
   //   return axios.get("/api/values/" + candId)
   // },

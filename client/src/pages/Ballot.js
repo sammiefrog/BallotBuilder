@@ -6,6 +6,7 @@ import API from '../utils/API';
 import OutlinedCard from '../components/Card';
 import GridList from '@material-ui/core/GridList';
 import Container from '@material-ui/core/Container';
+import PrefForm from '../components/PrefForm';
 
 const useStyles = makeStyles({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles({
     margin: "20px",
   },
   header: {
+    maxWidth: '100%',
     padding: "25px",
     margin: "20px",
     alignItems: "center",
@@ -58,9 +60,11 @@ const Ballot = () => {
   
     return (
       <Container className={classes.root}>
+        <PrefForm />
         <Box border={2} borderColor="secondary.main" className={classes.header}>
-          <Typography variant="h1">My Ballot</Typography>
+          <Typography variant="h3">My Candidates</Typography>
         </Box>
+
         <GridList className={classes.gridList} cols={3}>
           {candidates.map((candidate, i) => (
             <OutlinedCard
@@ -75,7 +79,6 @@ const Ballot = () => {
                 deleteCandidate(candidate._id);
               }}
               btncontent="Remove from My Ballot"
-              coreValues={candidate.coreValues}
             />
           ))}
         </GridList>
