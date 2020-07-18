@@ -40,25 +40,29 @@ const useStyles = makeStyles((theme) => ({
 
 const PrefForm = () => {
     const classes = useStyles();
-    const [input, setInput] = useState(""); 
+    const [date, setDate] = useState("");
+    const [reminder, setReminder] = useState("");
 
 
     const savePlan = async (plan) => {
+        console.log(date)
+        console.log(reminder)
       try {
           await API.savePlan({
               when: plan.date,
               absentee: plan.absentee,
-              reminderWho: plan.name
+              reminderWho: plan.reminder
         });
       } catch (err) {
         console.log(err);
       }
     };
 
-    const handleInputChange = (event) => {
-        const { value } = event.target;
-        setInput(value);
-    };
+    // const handleInputChange = (event) => {
+    //     const { name, value } = event.target;
+    //     setDate([ name: value ] );
+    //     setReminder({ name: value });
+    // };
 
     return (
       <Box border={2} borderColor="secondary.main" className={classes.root}>
@@ -76,15 +80,15 @@ const PrefForm = () => {
             defaultValue="top"
           >
             <FormControlLabel
-                        value="true"
-                        name='absentee'
+              value="true"
+              name="absentee"
               control={<Radio color="primary" />}
               label="Absentee"
               labelPlacement="start"
             />
             <FormControlLabel
-                        value="false"
-                        name='absentee'
+              value="false"
+              name="absentee"
               control={<Radio color="primary" />}
               label="In Person"
               labelPlacement="start"
@@ -93,7 +97,8 @@ const PrefForm = () => {
           <form className={classes.textfields} noValidate autoComplete="off">
             <Typography variant="h5">When will you vote?</Typography>
             <TextField
-              onChange={handleInputChange}
+              onChange={(e) => setDate(e.target.value)}
+            //   value={date}
               name="date"
               id="outlined-basic"
               label="Date"
@@ -101,7 +106,8 @@ const PrefForm = () => {
             />
             <Typography variant="h5">Who will you remind to vote?</Typography>
             <TextField
-              onChange={handleInputChange}
+              onChange={(e) => setReminder(e.target.value)}
+            //   value={reminder}
               name="reminder"
               id="outlined-basic"
               label="Name"
