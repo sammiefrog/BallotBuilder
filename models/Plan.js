@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const planSchema = new mongoose.Schema({
     // can ask if they plan on early voting or voting the day of the election. They'll input and include date if they want
     when: {
-        type: String,
+        type: String
     },
     // whether or not they plan to vote absentee
     absentee: {
@@ -12,7 +12,7 @@ const planSchema = new mongoose.Schema({
     },
     // who will the user remind
     reminderWho: {
-        type: String,
+        type: String
     },
     created: {
         type: Date,

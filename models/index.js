@@ -1,4 +1,4 @@
 module.exports = {
-    Candidate: require('./Candidate'),
-    Plan: require('./Plan')
+    Candidate: require("./Candidate"),
+    Plan: require("./Plan")
 };
