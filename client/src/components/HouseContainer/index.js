@@ -66,6 +66,23 @@ export default function HouseContainer() {
         setSearchTerm(value);
     };
 
+    let race = {
+        hasRepublican: house.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Republican" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ?
+                   true:false
+                        ),
+        hasDemocrat : house.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Democratic" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ?
+                   true:false
+                        )
+        } 
+
     return (
         <Container className={classes.root}>
             <form className={classes.TextField} noValidate autoComplete="off">
@@ -83,7 +100,9 @@ export default function HouseContainer() {
             <Typography variant="h3">
                 House Candidates for TN Primary Election on August 6th
             </Typography>
-            <Typography variant="h6">Democratic Primary</Typography>
+            
+            {race.hasDemocrat ? ( <Typography variant="h6">Democratic Primary</Typography>): ("") }
+            
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
@@ -107,7 +126,7 @@ export default function HouseContainer() {
                     )
                 )}
             </GridList>
-            <Typography variant="h6">Republican Primary</Typography>
+            {race.hasRepublican ? ( <Typography variant="h6">Republican Primary</Typography>): ("") }
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
