@@ -61,6 +61,7 @@ export default function PresidentContainer() {
             </Typography>
             <GridList className={classes.gridList} cols={3}>
                 {president.map(person =>
+                    person.electionStatus === "Running" ||
                     person.electionStatus === "Announced" &&
                     person.electionParties !== "Write-In (Independent)" &&
                     person.electionParties !== "Write-In" ? (
