@@ -82,6 +82,7 @@ export default function HouseContainer() {
                    true:false
                         )
         } 
+    console.log(race)
 
     return (
         <Container className={classes.root}>
@@ -101,7 +102,7 @@ export default function HouseContainer() {
                 House Candidates for TN Primary Election on August 6th
             </Typography>
             
-            {race.hasDemocrat ? ( <Typography variant="h6">Democratic Primary</Typography>): ("") }
+            {race.hasDemocrat[0] || race.hasDemocrat[1] ? ( <Typography variant="h6">Democratic Primary</Typography>): ("") }
             
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
@@ -126,7 +127,7 @@ export default function HouseContainer() {
                     )
                 )}
             </GridList>
-            {race.hasRepublican ? ( <Typography variant="h6">Republican Primary</Typography>): ("") }
+            {race.hasRepublican[0] || race.hasRepublican[1] ? ( <Typography variant="h6">Republican Primary</Typography>): ("") }
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
