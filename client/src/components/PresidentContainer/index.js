@@ -56,7 +56,9 @@ export default function PresidentContainer() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h3">Presidential Candidates</Typography>
+            <Typography variant="h3">
+                Presidential Candidates for November 3rd General Election
+            </Typography>
             <GridList className={classes.gridList} cols={3}>
                 {president.map(person =>
                     person.electionStatus === "Announced" &&

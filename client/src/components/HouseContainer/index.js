@@ -66,6 +66,24 @@ export default function HouseContainer() {
         setSearchTerm(value);
     };
 
+    let race = {
+        hasRepublican: house.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Republican" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ?
+                   true:false
+                        ),
+        hasDemocrat : house.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Democratic" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ?
+                   true:false
+                        )
+        } 
+    console.log(race)
+
     return (
         <Container className={classes.root}>
             <form className={classes.TextField} noValidate autoComplete="off">
@@ -80,10 +98,40 @@ export default function HouseContainer() {
             <Button variant="contained" color="secondary" onClick={getCandidates}>
                 Search
             </Button>
-            <Typography variant="h3">House Candidates</Typography>
+            <Typography variant="h3">
+                House Candidates for TN Primary Election on August 6th
+            </Typography>
+            
+            {race.hasDemocrat[0] || race.hasDemocrat[1] ? ( <Typography variant="h6">Democratic Primary</Typography>): ("") }
+            
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
+                    person.electionParties === "Democratic" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ? (
+                        <OutlinedCard
+                            key={person.candidateId}
+                            candidateId={person.candidateId}
+                            candidateName={person.ballotName}
+                            candidatePhoto={person.photo}
+                            candidateParty={person.electionParties}
+                            action={() => {
+                                saveCandidate(person);
+                            }}
+                            btncontent="Save to My Ballot"
+                            coreValues={person.coreValues}
+                        />
+                    ) : (
+                        ""
+                    )
+                )}
+            </GridList>
+            {race.hasRepublican[0] || race.hasRepublican[1] ? ( <Typography variant="h6">Republican Primary</Typography>): ("") }
+            <GridList className={classes.gridList} cols={3}>
+                {house.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Republican" &&
                     person.electionParties !== "Write-In (Independent)" &&
                     person.electionParties !== "Write-In" ? (
                         <OutlinedCard

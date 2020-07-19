@@ -5,6 +5,7 @@ import OutlinedCard from "../Card";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     root: {
@@ -56,11 +57,39 @@ export default function SenateContainer() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h3">Senate Candidates</Typography>
+            <Typography variant="h3">
+                Senate Candidates for TN Primary Election on August 6th
+            </Typography>
 
+            <Typography variant="h6">Republican Primary</Typography>
             <GridList className={classes.gridList} cols={3}>
                 {senate.map(person =>
                     person.electionStatus === "Running" &&
+                    person.electionParties === "Republican" &&
+                    person.electionParties !== "Write-In (Independent)" &&
+                    person.electionParties !== "Write-In" ? (
+                        <OutlinedCard
+                            key={person.candidateId}
+                            candidateId={person.candidateId}
+                            candidateName={person.ballotName}
+                            candidatePhoto={person.photo}
+                            candidateParty={person.electionParties}
+                            action={() => {
+                                saveCandidate(person);
+                            }}
+                            btncontent="Save to My Ballot"
+                            coreValues={person.coreValues}
+                        />
+                    ) : (
+                        ""
+                    )
+                )}
+            </GridList>
+            <Typography variant="h6">Democratic Primary</Typography>
+            <GridList className={classes.gridList} cols={3}>
+                {senate.map(person =>
+                    person.electionStatus === "Running" &&
+                    person.electionParties === "Democratic" &&
                     person.electionParties !== "Write-In (Independent)" &&
                     person.electionParties !== "Write-In" ? (
                         <OutlinedCard
