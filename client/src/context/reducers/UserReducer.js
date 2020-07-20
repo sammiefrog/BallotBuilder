@@ -28,7 +28,7 @@ export const UserReducer = (state, action) => {
             return { loggedIn: false };
 
         case "VALIDATION_SUCCEEDED":
-            return { loggedIn: true };
+            return { ...state, loggedIn: true };
 
         case "VALIDATION_FAILED":
             localStorage.removeItem("token");

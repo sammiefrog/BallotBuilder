@@ -12,12 +12,14 @@ const userSchema = new Schema({
         min: 6,
         required: true
     },
+    //referencing a users selected candidates
     candidates: [
         {
             type: Schema.Types.ObjectId,
             ref: "Candidate"
         }
     ],
+    //referencing a users plan
     plan: [
         {
             type: Schema.Types.ObjectId,

@@ -17,7 +17,6 @@ module.exports = {
         const salt = await bcrypt.genSalt();
         const hash = await bcrypt.hash(password, salt);
         const newUser = new User({ username, password: hash });
-        console.log(newUser);
 
         try {
             const savedUser = await newUser.save();
@@ -29,7 +28,9 @@ module.exports = {
 
             const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
             res.status(200).send({ token: `Bearer ${token}`, id: savedUser._id });
+
         } catch (error) {
+            console.log(error)
             res.status(400).send(error);
         }
     },
@@ -39,7 +40,7 @@ module.exports = {
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
 
-        const existingUser = await (await User.findOne({ username })).populate("candidate").populate("plan") //populate
+        const existingUser = await User.findOne({ username }).populate("candidates").populate("plan") //populate
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
         const matching = await bcrypt.compare(password, existingUser.password);

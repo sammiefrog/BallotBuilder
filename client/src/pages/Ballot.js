@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -7,6 +7,7 @@ import OutlinedCard from "../components/Card";
 import GridList from "@material-ui/core/GridList";
 import Container from "@material-ui/core/Container";
 import PrefForm from "../components/PrefForm";
+import { UserContext } from '../context/contexts/UserContext';
 
 const useStyles = makeStyles({
     root: {
@@ -34,6 +35,8 @@ const useStyles = makeStyles({
 const Ballot = () => {
     const classes = useStyles();
     const [candidates, setCandidates] = useState([]);
+    const { user } = useContext(UserContext);
+    console.log(user)
 
     useEffect(() => {
         loadCandidates();
@@ -41,7 +44,8 @@ const Ballot = () => {
 
     const loadCandidates = async () => {
         try {
-            const response = await API.getSaved();
+            const response = await API.getSaved(user.id);
+            console.log(response)
             setCandidates(response.data);
         } catch (err) {
             console.log(err);
@@ -65,7 +69,7 @@ const Ballot = () => {
             </Box>
 
             <GridList className={classes.gridList} cols={3}>
-                {candidates.map((candidate, i) => (
+                {candidates.length && candidates.map((candidate, i) => (
                     <OutlinedCard
                         key={i}
                         id={candidate._id}

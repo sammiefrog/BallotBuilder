@@ -10,11 +10,11 @@ export default {
     getHouse: function () {
         return axios.get("/api/house");
     },
-    saveCandidate: function (data) {
-        return axios.post("/api/saved", data);
+    saveCandidate: function (id, data) {
+        return axios.post("/api/saved/" + id, data);
     },
-    getSaved: function () {
-        return axios.get("/api/saved");
+    getSaved: function (id) {
+        return axios.get("/api/saved/" + id);
     },
     deleteCandidate: function (id) {
         return axios.delete("/api/saved/" + id);
@@ -31,7 +31,5 @@ export default {
     getPlan: function () {
         return axios.get("/api/plan")
     }
-    // getValues: function(candId) {
-    //   return axios.get("/api/values/" + candId)
-    // },
+
 };

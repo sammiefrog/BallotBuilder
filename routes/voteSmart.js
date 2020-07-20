@@ -19,7 +19,7 @@ module.exports = app => {
         // app.get("/api/values/:candId", candidateValues)
     app.post("/api/plan", savePlan);
     app.get("/api/plan", getPlan)
-    app.post("/api/saved", saveCandidates);
-    app.get("/api/saved", getSavedCandidates);
+    app.post("/api/saved/:id", saveCandidates);
+    app.get("/api/saved/:id", getSavedCandidates);
     app.delete("/api/saved/:id", deleteCandidate);
 };

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
 import OutlinedCard from "../Card/index";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import { UserContext } from "../../context/contexts/UserContext";
+
 
 const useStyles = makeStyles({
     root: {
@@ -22,6 +24,9 @@ const useStyles = makeStyles({
 export default function PresidentContainer() {
     const classes = useStyles();
     const [president, setPresident] = useState([]);
+    const { user } = useContext(UserContext);
+    console.log(user)
+
 
     useEffect(() => {
         getPresident();
@@ -43,7 +48,7 @@ export default function PresidentContainer() {
 
     const saveCandidate = async data => {
         try {
-            await API.saveCandidate({
+            await API.saveCandidate(user.id, {
                 candidateName: data.ballotName,
                 candidateParty: data.electionParties,
                 candidateId: data.candidateId,

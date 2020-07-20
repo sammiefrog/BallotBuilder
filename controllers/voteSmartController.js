@@ -65,15 +65,18 @@ module.exports = {
     },
     getPlan: (req, res) => {
         console.log(req.query);
-        db.Plan.find({})
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        db.User.findOne({}).then(
+            db.Plan.find({})
+                .then(dbModel => res.json(dbModel))
+        ).catch(err => res.status(422).json(err));
+        
     },
     saveCandidates: (req, res) => {
         console.log(req.body);
+        console.log(req.params.id);
         db.Candidate.create(req.body)
             .then(({ _id }) =>
-                db.User.findOneAndUpdate({}, { $push: { candidates: _id } }, { new: true })
+                db.User.findByIdAndUpdate(req.params.id, { $push: { candidates: _id } }, { new: true })
             )
             .then(dbModel => {
                 console.log(dbModel);
@@ -82,10 +85,12 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getSavedCandidates: (req, res) => {
-        db.Candidate.find(req.query)
-            .sort({ createdAt: -1 })
+        console.log(req.params.id)
+        db.User.findById(req.params.id)
+            .populate("candidates")
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+            .catch(err => res.status(422).json(err))
+        
     },
     deleteCandidate: (req, res) => {
         db.Candidate.findById({ _id: req.params.id })
