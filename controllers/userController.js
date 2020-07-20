@@ -6,7 +6,6 @@ const { secret } = require("../config/keys");
 
 module.exports = {
     RegistrationController: async (req, res) => {
-        console.log(req.body)
         const { username, password } = req.body;
 
         const { err } = await canRegister(req.body);
@@ -40,7 +39,7 @@ module.exports = {
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
 
-        const existingUser = await (await User.findOne({ username })).populate("candidates", "plans") //populate
+        const existingUser = await (await User.findOne({ username })).populate("candidate").populate("plan") //populate
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
         const matching = await bcrypt.compare(password, existingUser.password);

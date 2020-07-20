@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
 
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: {
         type: String,
         min: 6,
@@ -13,13 +14,13 @@ const userSchema = new mongoose.Schema({
     },
     candidates: [
         {
-            type: Schema.types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Candidate"
         }
     ],
     plan: [
         {
-            type: Schema.types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: "Plan"
         }
     ],

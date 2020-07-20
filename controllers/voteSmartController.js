@@ -27,36 +27,12 @@ module.exports = {
                 res.json(err);
             });
     },
-    // candidateValues: (req, res) => {
-    //   const candId = req.params.candId
-    //   console.log(candId)
-    //   axios
-    //     .get(VALUESURL + APIKEY + "&candidateId=" + candId + "&o=JSON")
-    //     .then((results) => {
-    //       console.log(results.data.candidateRating)
-    //       res.json(results.data.candidateRating);
-    //     })
-    //     .catch((err) => {
-    //       res.json(err);
-    //     });
-    // },
-    // houseCandidates: function (req, res) {
-    //   axios
-    //     .get(FEDURL + APIKEY + "&officeId=5&stateId=TN&o=JSON")
-    //     .then((results) => {
-    //       res.json(results.data.candidateList);
-    //     })
-    //     .catch((err) => {
-    //       res.json(err);
-    //     });
-    // },
     districtByZip: (req, res) => {
         const zip = req.params.zip;
         console.log(zip);
         axios
             .get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON")
             .then(results => {
-                console.log(results.data.districtList.district[0].districtId);
                 res.json(results.data.districtList.district[0].districtId);
             })
             .catch(err => {
@@ -65,8 +41,6 @@ module.exports = {
     },
     houseCandidatesByDistrict: (req, res) => {
         const distId = req.params.distId;
-        console.log(distId);
-        console.log(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON");
         axios
             .get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
             .then(results => {
@@ -80,6 +54,9 @@ module.exports = {
     savePlan: (req, res) => {
         console.log(req.body);
         db.Plan.create(req.body)
+            .then(({ _id }) =>
+                db.User.findOneAndUpdate({}, { $push: { plan: _id } }, { new: true })
+            )
             .then(dbModel => {
                 console.log(dbModel);
                 res.json(dbModel);
@@ -88,13 +65,16 @@ module.exports = {
     },
     getPlan: (req, res) => {
         console.log(req.query);
-        db.Plan.find(req.query)
+        db.Plan.find({})
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
     saveCandidates: (req, res) => {
         console.log(req.body);
         db.Candidate.create(req.body)
+            .then(({ _id }) =>
+                db.User.findOneAndUpdate({}, { $push: { candidates: _id } }, { new: true })
+            )
             .then(dbModel => {
                 console.log(dbModel);
                 res.json(dbModel);
