@@ -86,6 +86,12 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err));
     },
+    getPlan: (req, res) => {
+        console.log(req.query);
+        db.Plan.find(req.query)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
+    },
     saveCandidates: (req, res) => {
         console.log(req.body);
         db.Candidate.create(req.body)

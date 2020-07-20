@@ -27,6 +27,9 @@ export default {
     },
     savePlan: function (plan) {
         return axios.post("/api/plan", plan);
+    },
+    getPlan: function () {
+        return axios.get("/api/plan")
     }
     // getValues: function(candId) {
     //   return axios.get("/api/values/" + candId)

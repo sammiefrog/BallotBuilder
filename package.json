@@ -20,7 +20,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
-        "concurrently": "^4.1.0",
+        "concurrently": "^5.2.0",
         "nodemon": "^1.19.4",
         "prettier": "2.0.5"
     },

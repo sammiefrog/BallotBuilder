@@ -6,6 +6,7 @@ const { secret } = require("../config/keys");
 
 module.exports = {
     RegistrationController: async (req, res) => {
+        console.log(req.body)
         const { username, password } = req.body;
 
         const { err } = await canRegister(req.body);
@@ -20,20 +21,26 @@ module.exports = {
         console.log(newUser);
 
         try {
-            await newUser.save();
-            res.status(200).send("Thanks for registering!");
+            const savedUser = await newUser.save();
+            console.log(savedUser)
+            const jwt_payload = {
+                id: savedUser._id,
+                username: savedUser.username
+            };
+
+            const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
+            res.status(200).send({ token: `Bearer ${token}`, id: savedUser._id });
         } catch (error) {
             res.status(400).send(error);
         }
     },
-
     LoginController: async (req, res) => {
         const { username, password } = req.body;
 
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
 
-        const existingUser = await User.findOne({ username });
+        const existingUser = await (await User.findOne({ username })).populate("candidates", "plans") //populate
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
         const matching = await bcrypt.compare(password, existingUser.password);
@@ -45,6 +52,6 @@ module.exports = {
         };
 
         const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
-        res.status(200).send({ token: `Bearer ${token}` });
+        res.status(200).send({ token: `Bearer ${token}`,  id: existingUser._id  });
     }
 };

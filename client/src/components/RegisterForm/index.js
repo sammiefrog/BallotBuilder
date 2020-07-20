@@ -48,9 +48,10 @@ const RegistrationForm = () => {
         if (password === match) {
             try {
                 const response = await SendRegistration(username, password);
+            
                 dispatch({
                     type: "REGISTRATION_SUCCEEDED",
-                    payload: { token: response.data.token }
+                    payload: { token: response.data.token, id: response.data.id, message: "Thanks for Registering!" }
                 });
             } catch (error) {
                 dispatch({

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
@@ -9,6 +9,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import API from "../../utils/API";
+import { UserContext } from "../../context/contexts/UserContext";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -39,13 +41,19 @@ const useStyles = makeStyles(theme => ({
 
 const PrefForm = () => {
     const classes = useStyles();
+    const { user } = useContext(UserContext);
     const [date, setDate] = useState("");
     const [reminder, setReminder] = useState("");
     const [selectedValue, setSelectedValue] = useState(false);
 
+    useEffect(() => {
+        loadPlan()
+    }, []);
+
     const savePlan = async () => {
         try {
             await API.savePlan({
+                userId: user.id,
                 when: date,
                 absentee: selectedValue,
                 reminderWho: reminder
@@ -57,8 +65,17 @@ const PrefForm = () => {
         }
     };
 
-    const loadPlan = () => {
-        
+    // const getUser = () => {
+
+    // }
+
+    const loadPlan = async () => {
+        try {
+            const response = await API.getPlan();
+            // setSelectedValue(response.absentee)
+            // setDate(response.date);
+            // setReminder(response.reminder);
+        } catch(err){console.log(err)}
     }
 
     return (

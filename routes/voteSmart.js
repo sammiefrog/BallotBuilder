@@ -1,10 +1,10 @@
 const {
     presidentialCandidates,
     senateCandidates,
-    // houseCandidates,
     districtByZip,
     houseCandidatesByDistrict,
     savePlan,
+    getPlan,
     saveCandidates,
     getSavedCandidates,
     deleteCandidate
@@ -17,7 +17,8 @@ module.exports = app => {
     app.get("/api/district/:zip", districtByZip);
     app.get("/api/candidate/:distId", houseCandidatesByDistrict),
         // app.get("/api/values/:candId", candidateValues)
-        app.post("/api/plan", savePlan);
+    app.post("/api/plan", savePlan);
+    app.get("/api/plan", getPlan)
     app.post("/api/saved", saveCandidates);
     app.get("/api/saved", getSavedCandidates);
     app.delete("/api/saved/:id", deleteCandidate);
