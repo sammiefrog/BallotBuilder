@@ -94,6 +94,7 @@ const RegistrationForm = () => {
                             className={classes.root}
                             id="outlined-basic password"
                             label="Password"
+                            type="password"
                             value={password}
                             variant="outlined"
                             onChange={event => setPassword(event.target.value)}
@@ -105,6 +106,7 @@ const RegistrationForm = () => {
                             id="outlined-basic password"
                             label="Re-enter Password"
                             value={match}
+                            type="password"
                             variant="outlined"
                             onChange={event => setMatch(event.target.value)}
                         />
