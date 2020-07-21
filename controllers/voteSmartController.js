@@ -67,6 +67,7 @@ module.exports = {
     },
     getPlan: (req, res) => {
         let decoded = jwt.decode(req.params.token);
+
         db.User.findById(decoded.id)
             .populate("plan")
             .then(dbModel => res.json(dbModel))
@@ -97,24 +98,17 @@ module.exports = {
     },
     deleteCandidate: (req, res) => {
         let decoded = jwt.decode(req.params.token);
-        console.log(decoded);
-
-        db.User.findOneAndUpdate(
+        
+        db.User.updateOne(
             { _id: decoded.id },
-            { $pull: { candidates: req.body.id } },
-            { new: true },
-            (error, user) => {
-                res.json(user);
-
-                // if (error) {
-                //     console.log(error)
-                // }
-            }
-        ).then(dbModel => res.json(dbModel))
+            { $pull: { candidates: req.params.id } },
+            { safe: true}
+        )
+        .then(dbModel => {
+            console.log(dbModel)
+            res.json(dbModel)
+        })
         .catch(err => res.status(422).json(err));
-    
-        // .deleteOne({ candidates: { _id: req.body.id } })
-        // .then(dbModel => res.json(dbModel))
-        // .catch(err => res.status(422).json(err));
+
     }
 };

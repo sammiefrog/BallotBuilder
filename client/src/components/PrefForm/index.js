@@ -46,6 +46,7 @@ const PrefForm = () => {
     const [date, setDate] = useState("");
     const [reminder, setReminder] = useState("");
     const [selectedValue, setSelectedValue] = useState(false);
+    //for the returned plan
     const [voteDate, setVoteDate] = useState("");
     const [reminderWho, setReminderWho] = useState("");
     const [absentee, setAbsentee] = useState(false);
@@ -62,9 +63,10 @@ const PrefForm = () => {
                 reminderWho: reminder
             });
             console.log(save)
-            setAbsentee(save.absentee);
-            setVoteDate(save.when);
-            setReminderWho(save.reminderWho);
+            setSelectedValue(false);
+            setDate("");
+            setReminder("");
+            loadPlan();
         } catch (err) {
             console.log(err);
         }
@@ -74,10 +76,16 @@ const PrefForm = () => {
     const loadPlan = async () => {
         try {
             const response = await API.getPlan(user.token);
-            console.log(response)
-            setAbsentee(response.absentee)
-            setVoteDate(response.when);
-            setReminderWho(response.reminderWho);
+                if (response.data.plan[0]) {
+                    console.log(response.data.plan[0]);
+                    setAbsentee(response.data.plan[0].absentee);
+                    setVoteDate(response.data.plan[0].when);
+                    setReminderWho(response.data.plan[0].reminderWho);
+                } else if (response.data.plan === []) {
+                    setAbsentee("___");
+                    setVoteDate("___");
+                    setReminderWho("___");
+                }
         } catch(err){console.log(err)}
     }
 
