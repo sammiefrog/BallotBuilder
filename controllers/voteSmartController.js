@@ -67,6 +67,7 @@ module.exports = {
     },
     getPlan: (req, res) => {
         let decoded = jwt.decode(req.params.token);
+        
         db.User.findById(decoded.id)
             .populate("plan")
             .then(dbModel => res.json(dbModel))
@@ -116,5 +117,5 @@ module.exports = {
         // .deleteOne({ candidates: { _id: req.body.id } })
         // .then(dbModel => res.json(dbModel))
         // .catch(err => res.status(422).json(err));
-    };
+    }
 };
