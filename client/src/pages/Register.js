@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const Login = () => {
+const Register = () => {
     const classes = useStyles();
 
     return (
@@ -25,4 +25,4 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Register;

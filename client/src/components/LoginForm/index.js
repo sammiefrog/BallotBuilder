@@ -43,9 +43,10 @@ const LoginForm = () => {
 
         try {
             const response = await SendLoginInfo(username, password);
+            console.log(response)
             dispatch({
                 type: "LOGIN_SUCCEEDED",
-                payload: { token: response.data.token }
+                payload: { token: response.data.token, id: response.data.id}
             });
         } catch (error) {
             dispatch({

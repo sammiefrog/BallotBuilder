@@ -25,15 +25,17 @@ require("./routes/userRoutes")(app);
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+
+// app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 // Connect to the Mongo DB
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/ballotbuilder", {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     })
     .then(console.log("Database is connected"))
     .catch(err => console.log(err));

@@ -1,9 +1,13 @@
 export const UserReducer = (state, action) => {
     switch (action.type) {
         case "REGISTRATION_SUCCEEDED":
+            const registrationToken = action.payload.token.split(" ")[1];
+            const regId = action.payload.id;
+            localStorage.setItem("token", registrationToken);
             return {
                 loggedIn: true,
                 registered: true,
+                id: regId,
                 message: action.payload.message
             };
 
@@ -11,9 +15,10 @@ export const UserReducer = (state, action) => {
             return { loggedIn: false, message: action.payload.message };
 
         case "LOGIN_SUCCEEDED":
-            const token = action.payload.token.split(" ")[1];
-            localStorage.setItem("token", token);
-            return { loggedIn: true };
+            const loginToken = action.payload.token.split(" ")[1];
+            const id = action.payload.id;
+            localStorage.setItem("token", loginToken);
+            return { loggedIn: true, id: id };
 
         case "LOGIN_FAILED":
             return { loggedIn: false, message: action.payload.error };
@@ -23,7 +28,7 @@ export const UserReducer = (state, action) => {
             return { loggedIn: false };
 
         case "VALIDATION_SUCCEEDED":
-            return { loggedIn: true };
+            return { ...state, loggedIn: true };
 
         case "VALIDATION_FAILED":
             localStorage.removeItem("token");
