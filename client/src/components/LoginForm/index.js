@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom";
 import { UserContext } from "../../context/contexts/UserContext";
 import SendLoginInfo from "./action";
 import { Typography } from "@material-ui/core";
+import Link from '@material-ui/core/Link';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -19,7 +20,8 @@ const useStyles = makeStyles(theme => ({
     button: {
         "& > *": {
             margin: theme.spacing(1)
-        }
+        },
+        marginRight: '15px',
     },
     container: {
         margin: "50px",
@@ -76,7 +78,8 @@ const LoginForm = () => {
                           <TextField
                               className={classes.root}
                               id="outlined-basic password"
-                              label="Password"
+                            label="Password"
+                            type='password'
                               value={password}
                               variant="outlined"
                               onChange={event => setPassword(event.target.value)}
@@ -90,6 +93,7 @@ const LoginForm = () => {
                               color="secondary">
                               Login
                           </Button>
+                          <Link href="/register" color="primary" variant="body2">{"Don't have an account? Register Now!"}</Link>
                           <Typography variant="subtitle2">{message}</Typography>
                       </Box>
                   </form>
