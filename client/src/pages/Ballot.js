@@ -39,7 +39,7 @@ const Ballot = () => {
 
     useEffect(() => {
         loadCandidates();
-    }, []);
+    }, [user]);
 
     const loadCandidates = async () => {
         try {
@@ -68,7 +68,7 @@ const Ballot = () => {
             </Box>
 
             <GridList className={classes.gridList} cols={3}>
-                {candidates.length && candidates.map((candidate, i) => (
+                {candidates.map((candidate, i) => (
                     <OutlinedCard
                         key={i}
                         id={candidate._id}

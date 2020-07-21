@@ -2,12 +2,13 @@ export const UserReducer = (state, action) => {
     switch (action.type) {
         case "REGISTRATION_SUCCEEDED":
             const registrationToken = action.payload.token.split(" ")[1];
-            const regId = action.payload.id;
+            // const regId = action.payload.id;
             localStorage.setItem("token", registrationToken);
             return {
                 loggedIn: true,
                 registered: true,
-                id: regId,
+                // id: regId,
+                token: registrationToken,
                 message: action.payload.message
             };
 
@@ -16,9 +17,9 @@ export const UserReducer = (state, action) => {
 
         case "LOGIN_SUCCEEDED":
             const loginToken = action.payload.token.split(" ")[1];
-            const id = action.payload.id;
+            // const id = action.payload.id;
             localStorage.setItem("token", loginToken);
-            return { loggedIn: true, id: id };
+            return { loggedIn: true, token: loginToken };
 
         case "LOGIN_FAILED":
             return { loggedIn: false, message: action.payload.error };

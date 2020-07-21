@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppBarNav from "./components/AppBarNav";
 import Ballot from "./pages/Ballot";
@@ -9,11 +9,15 @@ import Register from "./pages/Register";
 import { UserContext, UserContextProvider } from "./context/contexts/UserContext";
 
 function App() {
+    
+    useEffect(() => {
+        console.log("re-rendered");
+    }, []);
+
     return (
         <UserContextProvider>
             <UserContext.Consumer>
                 {({ user }) => {
-                    console.log(user);
                     return (
                         <Router>
                             <div>

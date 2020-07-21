@@ -51,8 +51,8 @@ const PrefForm = () => {
     const [reminderWho, setReminderWho] = useState("");
     const [absentee, setAbsentee] = useState(false);
 
-    useEffect(() => {
-        loadPlan()
+    useEffect( () => {
+        loadPlan();
     }, []);
 
     const savePlan = async () => {
@@ -73,7 +73,7 @@ const PrefForm = () => {
     };
 
 
-    const loadPlan = async () => {
+    const loadPlan =  async () => {
         try {
             const response = await API.getPlan(user.token);
                 if (response.data.plan[0]) {

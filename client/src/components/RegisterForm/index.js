@@ -51,7 +51,7 @@ const RegistrationForm = () => {
                 console.log(response)
                 dispatch({
                     type: "REGISTRATION_SUCCEEDED",
-                    payload: { token: response.data.token, id: response.data.id, message: "Thanks for Registering!" }
+                    payload: { token: response.data.token, message: "Thanks for Registering!" }
                 });
             } catch (error) {
                 console.log(error)
