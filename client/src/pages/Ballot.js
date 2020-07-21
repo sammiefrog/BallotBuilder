@@ -44,9 +44,9 @@ const Ballot = () => {
 
     const loadCandidates = async () => {
         try {
-            const response = await API.getSaved(user.id);
+            const response = await API.getSaved(user.token);
             console.log(response)
-            setCandidates(response.data);
+            setCandidates(response.data.candidates);
         } catch (err) {
             console.log(err);
         }

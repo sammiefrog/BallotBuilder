@@ -4,6 +4,7 @@ const FEDURL = "http://api.votesmart.org/Candidates.getByOfficeState";
 const APIKEY = "?key=35ff1dd44bb6c16ee2db8a35998a8f21";
 const DISTRICTURL = "http://api.votesmart.org/District.getByZip";
 const CANDIDATEURL = "http://api.votesmart.org/Candidates.getByDistrict";
+const jwt = require("jsonwebtoken");
 
 // Defining methods for the voteSmart controller
 module.exports = {
@@ -72,11 +73,11 @@ module.exports = {
         
     },
     saveCandidates: (req, res) => {
-        console.log(req.body);
-        console.log(req.params.id);
+                let decoded = jwt.decode(req.params.token);
+
         db.Candidate.create(req.body)
             .then(({ _id }) =>
-                db.User.findByIdAndUpdate(req.params.id, { $push: { candidates: _id } }, { new: true })
+                db.User.findByIdAndUpdate(decoded.id, { $push: { candidates: _id } }, { new: true })
             )
             .then(dbModel => {
                 console.log(dbModel);
@@ -85,8 +86,10 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getSavedCandidates: (req, res) => {
-        console.log(req.params.id)
-        db.User.findById(req.params.id)
+        let decoded = jwt.decode(req.params.token)
+        console.log(decoded);
+
+        db.User.findById(decoded.id)
             .populate("candidates")
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))

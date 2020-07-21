@@ -48,7 +48,7 @@ export default function PresidentContainer() {
 
     const saveCandidate = async data => {
         try {
-            await API.saveCandidate(user.id, {
+            await API.saveCandidate(user.token, {
                 candidateName: data.ballotName,
                 candidateParty: data.electionParties,
                 candidateId: data.candidateId,

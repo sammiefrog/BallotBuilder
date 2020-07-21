@@ -10,11 +10,11 @@ export default {
     getHouse: function () {
         return axios.get("/api/house");
     },
-    saveCandidate: function (id, data) {
-        return axios.post("/api/saved/" + id, data);
+    saveCandidate: function (token, data) {
+        return axios.post("/api/saved/" + token, data);
     },
-    getSaved: function (id) {
-        return axios.get("/api/saved/" + id);
+    getSaved: function (token) {
+        return axios.get("/api/saved/" + token);
     },
     deleteCandidate: function (id) {
         return axios.delete("/api/saved/" + id);
