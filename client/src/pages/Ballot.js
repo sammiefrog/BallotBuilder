@@ -36,7 +36,6 @@ const Ballot = () => {
     const classes = useStyles();
     const [candidates, setCandidates] = useState([]);
     const { user } = useContext(UserContext);
-    console.log(user)
 
     useEffect(() => {
         loadCandidates();

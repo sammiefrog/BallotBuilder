@@ -53,10 +53,11 @@ module.exports = {
             });
     },
     savePlan: (req, res) => {
-        console.log(req.body);
+        let decoded = jwt.decode(req.params.token);
+
         db.Plan.create(req.body)
             .then(({ _id }) =>
-                db.User.findOneAndUpdate({}, { $push: { plan: _id } }, { new: true })
+                db.User.findByIdAndUpdate(decoded.id, { $unshift: { plan: _id } }, { new: true })
             )
             .then(dbModel => {
                 console.log(dbModel);
@@ -65,15 +66,15 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     getPlan: (req, res) => {
-        console.log(req.query);
-        db.User.findOne({}).then(
-            db.Plan.find({})
-                .then(dbModel => res.json(dbModel))
-        ).catch(err => res.status(422).json(err));
+        let decoded = jwt.decode(req.params.token);
+        db.User.findById(decoded.id)
+            .populate("plan")
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
         
     },
     saveCandidates: (req, res) => {
-                let decoded = jwt.decode(req.params.token);
+        let decoded = jwt.decode(req.params.token);
 
         db.Candidate.create(req.body)
             .then(({ _id }) =>
@@ -87,7 +88,6 @@ module.exports = {
     },
     getSavedCandidates: (req, res) => {
         let decoded = jwt.decode(req.params.token)
-        console.log(decoded);
 
         db.User.findById(decoded.id)
             .populate("candidates")

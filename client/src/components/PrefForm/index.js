@@ -10,6 +10,7 @@ import FormControl from "@material-ui/core/FormControl";
 import Button from "@material-ui/core/Button";
 import API from "../../utils/API";
 import { UserContext } from "../../context/contexts/UserContext";
+import { Container } from "@material-ui/core";
 
 
 const useStyles = makeStyles(theme => ({
@@ -45,6 +46,9 @@ const PrefForm = () => {
     const [date, setDate] = useState("");
     const [reminder, setReminder] = useState("");
     const [selectedValue, setSelectedValue] = useState(false);
+    const [voteDate, setVoteDate] = useState("");
+    const [reminderWho, setReminderWho] = useState("");
+    const [absentee, setAbsentee] = useState(false);
 
     useEffect(() => {
         loadPlan()
@@ -52,98 +56,105 @@ const PrefForm = () => {
 
     const savePlan = async () => {
         try {
-            await API.savePlan({
-                userId: user.id,
+            const save = await API.savePlan(user.token, {
                 when: date,
                 absentee: selectedValue,
                 reminderWho: reminder
             });
-            setDate(date);
-            setReminder(reminder);
+            console.log(save)
+            setAbsentee(save.absentee);
+            setVoteDate(save.when);
+            setReminderWho(save.reminderWho);
         } catch (err) {
             console.log(err);
         }
     };
 
-    // const getUser = () => {
-
-    // }
 
     const loadPlan = async () => {
         try {
-            const response = await API.getPlan();
-            // setSelectedValue(response.absentee)
-            // setDate(response.date);
-            // setReminder(response.reminder);
+            const response = await API.getPlan(user.token);
+            console.log(response)
+            setAbsentee(response.absentee)
+            setVoteDate(response.when);
+            setReminderWho(response.reminderWho);
         } catch(err){console.log(err)}
     }
 
     return (
-        <Box border={2} borderColor="secondary.main" className={classes.root}>
-            <FormControl component="fieldset">
-                <Typography variant="h5">How are you voting?</Typography>
-                <RadioGroup
-                    row
-                    className={classes.radio}
-                    aria-label="position"
-                    name="position"
-                    defaultValue="top">
-                    <FormControlLabel
-                        name="absentee"
-                        control={
-                            <Radio
-                                checked={selectedValue === true}
-                                onChange={e => setSelectedValue(!selectedValue)}
-                                value={selectedValue}
-                                color="primary"
-                            />
-                        }
-                        label="Absentee"
-                        labelPlacement="start"
-                    />
-                    <FormControlLabel
-                        name="inperson"
-                        control={
-                            <Radio
-                                checked={selectedValue === false}
-                                onChange={e => setSelectedValue(!selectedValue)}
-                                value={selectedValue}
-                                color="primary"
-                            />
-                        }
-                        label="In Person"
-                        labelPlacement="start"
-                    />
-                </RadioGroup>
-                <div className={classes.textfields} noValidate autoComplete="off">
-                    <Typography variant="h5">When will you vote?</Typography>
-                    <TextField
-                        onChange={e => setDate(e.target.value)}
-                        value={date}
-                        name="date"
-                        id="outlined-basic"
-                        label="Date"
-                        variant="outlined"
-                    />
-                    <Typography variant="h5">Who will you remind to vote?</Typography>
-                    <TextField
-                        onChange={e => setReminder(e.target.value)}
-                        value={reminder}
-                        name="reminder"
-                        id="outlined-basic"
-                        label="Name"
-                        variant="outlined"
-                    />
-                </div>
-                <Button
-                    className={classes.button}
-                    variant="contained"
-                    color="secondary"
-                    onClick={savePlan}>
-                    Save My Plan
-                </Button>
-            </FormControl>
-        </Box>
+        <Container>
+            <Box border={2} borderColor="secondary.main" className={classes.root}>
+                <FormControl component="fieldset">
+                    <Typography variant="h5">How are you voting?</Typography>
+                    <RadioGroup
+                        row
+                        className={classes.radio}
+                        aria-label="position"
+                        name="position"
+                        defaultValue="top">
+                        <FormControlLabel
+                            name="absentee"
+                            control={
+                                <Radio
+                                    checked={selectedValue === true}
+                                    onChange={e => setSelectedValue(!selectedValue)}
+                                    value={selectedValue}
+                                    color="primary"
+                                />
+                            }
+                            label="Absentee"
+                            labelPlacement="start"
+                        />
+                        <FormControlLabel
+                            name="inperson"
+                            control={
+                                <Radio
+                                    checked={selectedValue === false}
+                                    onChange={e => setSelectedValue(!selectedValue)}
+                                    value={selectedValue}
+                                    color="primary"
+                                />
+                            }
+                            label="In Person"
+                            labelPlacement="start"
+                        />
+                    </RadioGroup>
+                    <div className={classes.textfields} noValidate autoComplete="off">
+                        <Typography variant="h5">When will you vote?</Typography>
+                        <TextField
+                            onChange={e => setDate(e.target.value)}
+                            value={date}
+                            name="date"
+                            id="outlined-basic"
+                            label="Date"
+                            variant="outlined"
+                        />
+                        <Typography variant="h5">Who will you remind to vote?</Typography>
+                        <TextField
+                            onChange={e => setReminder(e.target.value)}
+                            value={reminder}
+                            name="reminder"
+                            id="outlined-basic"
+                            label="Name"
+                            variant="outlined"
+                        />
+                    </div>
+                    <Button
+                        className={classes.button}
+                        variant="contained"
+                        color="secondary"
+                        onClick={savePlan}>
+                        Save My Plan
+                    </Button>
+                </FormControl>
+            </Box>
+            <Box>
+                <Typography variant="h5">
+                    I will vote on {voteDate}, with an {absentee === true ? "Absentee" : "In person"} ballot, and I will remind{" "}
+                    {reminderWho} to vote as well.
+                </Typography>
+            </Box>
+        </Container>
     );
 };
 

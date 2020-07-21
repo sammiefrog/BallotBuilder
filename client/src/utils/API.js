@@ -25,11 +25,11 @@ export default {
     getHouseCandidates: function (distId) {
         return axios.get("/api/candidate/" + distId);
     },
-    savePlan: function (plan) {
-        return axios.post("/api/plan", plan);
+    savePlan: function (token, plan) {
+        return axios.post("/api/plan/" + token, plan);
     },
-    getPlan: function () {
-        return axios.get("/api/plan")
+    getPlan: function (token) {
+        return axios.get("/api/plan/" + token)
     }
 
 };

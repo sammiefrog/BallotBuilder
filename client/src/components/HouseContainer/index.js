@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
 import OutlinedCard from "../Card";
@@ -7,6 +7,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import { UserContext } from "../../context/contexts/UserContext";
+
 
 const useStyles = makeStyles({
     root: {
@@ -30,6 +32,8 @@ export default function HouseContainer() {
     const classes = useStyles();
     const [house, setHouse] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
+    const { user } = useContext(UserContext);
+
 
     const getCandidates = async () => {
         try {
@@ -50,7 +54,7 @@ export default function HouseContainer() {
 
     const saveCandidate = async data => {
         try {
-            await API.saveCandidate({
+            await API.saveCandidate(user.token, {
                 candidateName: data.ballotName,
                 candidateParty: data.electionParties,
                 candidateId: data.candidateId,
