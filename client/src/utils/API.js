@@ -16,8 +16,8 @@ export default {
     getSaved: function (token) {
         return axios.get("/api/saved/" + token);
     },
-    deleteCandidate: function (id) {
-        return axios.delete("/api/saved/" + id);
+    deleteCandidate: function (token, id) {
+        return axios.delete("/api/saved/" + token, id);
     },
     getDistrict: function (zip) {
         return axios.get("/api/district/" + zip);

@@ -53,7 +53,7 @@ const Ballot = () => {
 
     const deleteCandidate = async id => {
         try {
-            await API.deleteCandidate(id);
+            await API.deleteCandidate(user.token, id);
             loadCandidates();
         } catch (err) {
             console.log(err);

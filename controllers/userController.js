@@ -39,8 +39,8 @@ module.exports = {
 
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
-
-        const existingUser = await User.findOne({ username }).populate("candidates").populate("plan") //populate
+// .populate("candidates").populate("plan") //populate
+        const existingUser = await User.findOne({ username })
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
         const matching = await bcrypt.compare(password, existingUser.password);
