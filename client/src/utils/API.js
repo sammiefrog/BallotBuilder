@@ -17,9 +17,7 @@ export default {
         return axios.get("/api/saved/" + token);
     },
     deleteCandidate: function (token, id) {
-        // return axios.put("/api/saved/" + token, {data: {_id: id} });
         return axios.delete("/api/saved/" + token + "/" + id);
-        
     },
     getDistrict: function (zip) {
         return axios.get("/api/district/" + zip);
@@ -33,5 +31,4 @@ export default {
     getPlan: function (token) {
         return axios.get("/api/plan/" + token)
     }
-
 };

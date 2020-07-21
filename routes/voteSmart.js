@@ -23,6 +23,5 @@ module.exports = app => {
     app.get("/api/saved/:token", getSavedCandidates);
     
     app.delete("/api/saved/:token/:id", deleteCandidate);
-        // app.put("/api/saved/:token", deleteCandidate);
 
 };

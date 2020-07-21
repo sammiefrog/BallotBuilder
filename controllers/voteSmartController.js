@@ -65,14 +65,15 @@ module.exports = {
             })
             .catch(err => res.status(422).json(err));
     },
-    getPlan: (req, res) => {
-        let decoded = jwt.decode(req.params.token);
-
-        db.User.findById(decoded.id)
-            .populate("plan")
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
-        
+    getPlan: async (req, res) => {
+        try {
+            let decoded = await jwt.decode(req.params.token);
+            console.log(decoded)
+            db.User.findById(decoded.id)
+                .populate("plan")
+                .then(dbModel => res.json(dbModel))
+                .catch(err => res.status(422).json(err));
+        } catch (error) { console.log(error)}
     },
     saveCandidates: (req, res) => {
         let decoded = jwt.decode(req.params.token);
@@ -89,12 +90,12 @@ module.exports = {
     },
     getSavedCandidates: (req, res) => {
         let decoded = jwt.decode(req.params.token)
-
-        db.User.findById(decoded.id)
-            .populate("candidates")
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err))
-        
+        if (req.params.token) {
+            db.User.findById(decoded.id)
+                .populate("candidates")
+                .then(dbModel => res.json(dbModel))
+                .catch(err => res.status(422).json(err))
+        } else {res.status(422).json(err);}
     },
     deleteCandidate: (req, res) => {
         let decoded = jwt.decode(req.params.token);

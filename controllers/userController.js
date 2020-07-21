@@ -20,14 +20,14 @@ module.exports = {
 
         try {
             const savedUser = await newUser.save();
-            console.log(savedUser)
+
             const jwt_payload = {
                 id: savedUser._id,
                 username: savedUser.username
             };
 
             const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
-            res.status(200).send({ token: `Bearer ${token}`, id: savedUser._id });
+            res.status(200).send({ token: `Bearer ${token}` });
 
         } catch (error) {
             console.log(error)
@@ -39,7 +39,7 @@ module.exports = {
 
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
-// .populate("candidates").populate("plan") //populate
+        
         const existingUser = await User.findOne({ username })
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
@@ -52,6 +52,6 @@ module.exports = {
         };
 
         const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
-        res.status(200).send({ token: `Bearer ${token}`,  id: existingUser._id  });
+        res.status(200).send({ token: `Bearer ${token}` });
     }
 };
