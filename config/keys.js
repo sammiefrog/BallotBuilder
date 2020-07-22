@@ -1,5 +1,5 @@
 module.exports = {
     
-    secret: FROGL1FE
+    secret: process.env.SECRET
 
 };
