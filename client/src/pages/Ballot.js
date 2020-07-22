@@ -39,7 +39,7 @@ const Ballot = () => {
 
     useEffect(() => {
         loadCandidates();
-    }, [user]);
+    }, []);
 
     const loadCandidates = async () => {
         try {
@@ -53,7 +53,6 @@ const Ballot = () => {
     const deleteCandidate = async id => {
         try {
             const res = await API.deleteCandidate(user.token, id);
-            console.log(res)
             loadCandidates();
         } catch (err) {
             console.log(err);

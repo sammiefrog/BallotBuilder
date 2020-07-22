@@ -32,6 +32,7 @@ export default function PresidentContainer() {
         getPresident();
     }, []);
 
+
     const getPresident = async () => {
         try {
             const response = await API.getPresident();
@@ -65,13 +66,13 @@ export default function PresidentContainer() {
                 Presidential Candidates for November 3rd General Election
             </Typography>
             <GridList className={classes.gridList} cols={3}>
-                {president.map(person =>
+                {president.map((person, i) =>
                     person.electionStatus === "Running" ||
-                    person.electionStatus === "Announced" &&
-                    person.electionParties !== "Write-In (Independent)" &&
-                    person.electionParties !== "Write-In" ? (
+                    (person.electionStatus === "Announced" &&
+                        person.electionParties !== "Write-In (Independent)" &&
+                        person.electionParties !== "Write-In") ? (
                         <OutlinedCard
-                            key={person.candidateId}
+                            key={i}
                             candidateId={person.candidateId}
                             candidateName={person.ballotName}
                             candidatePhoto={person.photo}
@@ -87,6 +88,11 @@ export default function PresidentContainer() {
                     )
                 )}
             </GridList>
+            {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success">
+                        Saved Candidate!
+                    </Alert>
+                </Snackbar> */}
         </Container>
     );
 }
