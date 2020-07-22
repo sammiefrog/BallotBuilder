@@ -1,34 +1,34 @@
 import axios from "axios";
 
 export default {
-    getSenate: function () {
+    getSenate: () => {
         return axios.get("/api/senate");
     },
-    getPresident: function () {
+    getPresident: () => {
         return axios.get("/api/president");
     },
-    getHouse: function () {
+    getHouse: () => {
         return axios.get("/api/house");
     },
-    saveCandidate: function (token, data) {
+    saveCandidate: (token, data) => {
         return axios.post("/api/saved/" + token, data);
     },
-    getSaved: function (token) {
+    getSaved: (token) =>{
         return axios.get("/api/saved/" + token);
     },
-    deleteCandidate: function (token, id) {
+    deleteCandidate:  (token, id) => {
         return axios.delete("/api/saved/" + token + "/" + id);
     },
-    getDistrict: function (zip) {
+    getDistrict: (zip) => {
         return axios.get("/api/district/" + zip);
     },
-    getHouseCandidates: function (distId) {
+    getHouseCandidates: (distId) => {
         return axios.get("/api/candidate/" + distId);
     },
-    savePlan: function (token, plan) {
+    savePlan: (token, plan) => {
         return axios.post("/api/plan/" + token, plan);
     },
-    getPlan: function (token) {
+    getPlan: (token) => {
         return axios.get("/api/plan/" + token);
     }
 };
