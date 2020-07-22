@@ -7,6 +7,8 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { UserContext } from "../../context/contexts/UserContext";
+import Link from "@material-ui/icons/Link";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -45,6 +47,7 @@ const AppBarNav = () => {
                         aria-label="menu">
                         <MenuIcon />
                     </IconButton>
+
                     <Typography variant="h6" className={classes.spacing}>
                         <Button color="inherit" href="/home" className={classes.title}>
                             Tennessee Ballot Builder

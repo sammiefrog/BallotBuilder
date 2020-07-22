@@ -49,6 +49,7 @@ const PrefForm = () => {
     const [voteDate, setVoteDate] = useState("");
     const [reminderWho, setReminderWho] = useState("");
     const [absentee, setAbsentee] = useState(false);
+    const [content, setContent] = useState("");
 
     useEffect(() => {
         loadPlan();
@@ -79,6 +80,7 @@ const PrefForm = () => {
                 setAbsentee(response.data.plan[0].absentee);
                 setVoteDate(response.data.plan[0].when);
                 setReminderWho(response.data.plan[0].reminderWho);
+
             } else if (response.data.plan === []) {
                 setAbsentee("___");
                 setVoteDate("___");
@@ -158,9 +160,8 @@ const PrefForm = () => {
             </Box>
             <Box>
                 <Typography variant="h5">
-                    I will vote on {voteDate}, with an{" "}
-                    {absentee === true ? "Absentee" : "In person"} ballot, and I will remind{" "}
-                    {reminderWho} to vote as well.
+                    I will vote on {voteDate}, with an {absentee === true ? " Absentee" : " In person"} ballot, and I will remind {reminderWho} to vote as well.
+
                 </Typography>
             </Box>
         </Container>

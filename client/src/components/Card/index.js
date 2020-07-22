@@ -7,6 +7,13 @@ import CardContent from "@material-ui/core/CardContent";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
+import Button from "@material-ui/core/Button";
+import Snackbar from "@material-ui/core/Snackbar";
+import MuiAlert from "@material-ui/lab/Alert";
+
+function Alert(props) {
+    return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
 
 const useStyles = makeStyles({
     root: {
@@ -29,6 +36,24 @@ function OutlinedCard(props) {
     const classes = useStyles();
     const { user } = useContext(UserContext);
     const [redirect, setRedirect] = useState(false);
+    //snackbar
+    const [open, setOpen] = React.useState(false);
+
+    const loggedInClickHandler = async () => {
+        try {
+            await setOpen(true);
+            props.action();
+        }catch(error){console.log(error)}
+        
+    };
+
+    const handleClose = (event, reason) => {
+        if (reason === "clickaway") {
+            return;
+        }
+
+        setOpen(false);
+    };
 
     if (redirect) {
         return <Redirect to="/login" />;
@@ -36,7 +61,8 @@ function OutlinedCard(props) {
         return (
             <Card className={classes.root} variant="outlined">
                 <CardContent>
-                    <Typography variant="h5" component="h2" color="primary" gutterBottom>
+                    <Typography variant="h5" color="primary" gutterBottom>
+
                         {props.candidateName}
                     </Typography>
                     <Typography className={classes.title} color="primary">
@@ -47,10 +73,21 @@ function OutlinedCard(props) {
                     <Link
                         className={classes.button}
                         component="button"
-                        onClick={user.loggedIn ? props.action : () => setRedirect(true)}
+                        onClick={user.loggedIn ? loggedInClickHandler : () => setRedirect(true)}
                         size="small">
                         {props.btncontent}
                     </Link>
+                    <Snackbar
+                        anchorOrigin={{
+                            vertical: "left",
+                            horizontal: "left"
+                        }}
+                        open={open}
+                        onClose={handleClose}>
+                        <Alert onClose={handleClose} severity="success">
+                            Success!
+                        </Alert>
+                    </Snackbar>
                     <Link
                         className={classes.button}
                         target="_blank"
