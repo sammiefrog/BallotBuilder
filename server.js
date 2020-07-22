@@ -30,7 +30,7 @@ app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// Connect to the Mongo DB
+// Connect to the Mongo DB, handle depreciation warnings
 mongoose
     .connect(process.env.MONGODB_URI || "mongodb://localhost/ballotbuilder", {
         useNewUrlParser: true,
