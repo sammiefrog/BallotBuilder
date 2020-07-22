@@ -15,8 +15,11 @@ const useStyles = makeStyles(theme => ({
     menuButton: {
         marginRight: theme.spacing(2)
     },
-    title: {
+    spacing: {
         flexGrow: 1
+    },
+    title: {
+        fontSize: 20
     }
 }));
 
@@ -42,8 +45,10 @@ const AppBarNav = () => {
                         aria-label="menu">
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" className={classes.title}>
-                        Ballot Builder
+                    <Typography variant="h6" className={classes.spacing}>
+                        <Button color="inherit" href="/home" className={classes.title}>
+                            Tennessee Ballot Builder
+                        </Button>
                     </Typography>
                     <Button color="inherit" href="/home">
                         Home

@@ -11,12 +11,12 @@ const useStyles = makeStyles(theme => ({
         marginTop: "20px"
     },
     container: {
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: "center",
+        alignItems: "center"
         // textAlign: 'center'
     },
     registerButton: {
-        marginLeft: 10,
+        marginLeft: 10
     }
 }));
 

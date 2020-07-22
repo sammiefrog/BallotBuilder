@@ -8,7 +8,6 @@ import { Typography } from "@material-ui/core";
 // import Box from "@material-ui/core/Box";
 import { UserContext } from "../../context/contexts/UserContext";
 
-
 const useStyles = makeStyles({
     root: {
         justifyContent: "center",
@@ -60,7 +59,7 @@ export default function SenateContainer() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h3">
+            <Typography variant="h4">
                 Senate Candidates for TN Primary Election on August 6th
             </Typography>
 

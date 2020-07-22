@@ -11,13 +11,17 @@ import { UserContext } from "../../context/contexts/UserContext";
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        margin: "10px"
+        margin: "10px",
+        border: "double blue"
     },
     title: {
         fontSize: 14
     },
     pos: {
         marginBottom: 12
+    },
+    button: {
+        fontSize: 14
     }
 });
 
@@ -32,26 +36,23 @@ function OutlinedCard(props) {
         return (
             <Card className={classes.root} variant="outlined">
                 <CardContent>
-                    <Typography
-                        // className={classes.title}
-                        variant="h5"
-                        component="h2"
-                        color="primary"
-                        gutterBottom>
+                    <Typography variant="h5" component="h2" color="primary" gutterBottom>
                         {props.candidateName}
                     </Typography>
-                    <Typography className={classes.title}>
-                        Candidate Party: {props.candidateParty}
+                    <Typography className={classes.title} color="primary">
+                        Party: {props.candidateParty}
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Link
+                        className={classes.button}
                         component="button"
                         onClick={user.loggedIn ? props.action : () => setRedirect(true)}
                         size="small">
                         {props.btncontent}
                     </Link>
                     <Link
+                        className={classes.button}
                         target="_blank"
                         rel="noopener noreferrer"
                         href={props.coreValues}
