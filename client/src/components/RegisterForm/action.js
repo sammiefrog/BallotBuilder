@@ -8,5 +8,7 @@ export const SendRegistration = async (username, password) => {
             data: { username, password }
         });
         return reply;
-    } catch (error){ console.log(error)}
+    } catch (error) {
+        console.log(error);
+    }
 };

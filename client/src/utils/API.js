@@ -29,6 +29,6 @@ export default {
         return axios.post("/api/plan/" + token, plan);
     },
     getPlan: function (token) {
-        return axios.get("/api/plan/" + token)
+        return axios.get("/api/plan/" + token);
     }
 };

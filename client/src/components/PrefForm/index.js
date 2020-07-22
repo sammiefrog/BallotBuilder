@@ -12,7 +12,6 @@ import API from "../../utils/API";
 import { UserContext } from "../../context/contexts/UserContext";
 import { Container } from "@material-ui/core";
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         maxWidth: "100%",
@@ -51,7 +50,7 @@ const PrefForm = () => {
     const [reminderWho, setReminderWho] = useState("");
     const [absentee, setAbsentee] = useState(false);
 
-    useEffect( () => {
+    useEffect(() => {
         loadPlan();
     }, []);
 
@@ -62,7 +61,7 @@ const PrefForm = () => {
                 absentee: selectedValue,
                 reminderWho: reminder
             });
-            console.log(save)
+            console.log(save);
             setSelectedValue(false);
             setDate("");
             setReminder("");
@@ -72,22 +71,23 @@ const PrefForm = () => {
         }
     };
 
-
-    const loadPlan =  async () => {
+    const loadPlan = async () => {
         try {
             const response = await API.getPlan(user.token);
-                if (response.data.plan[0]) {
-                    console.log(response.data.plan[0]);
-                    setAbsentee(response.data.plan[0].absentee);
-                    setVoteDate(response.data.plan[0].when);
-                    setReminderWho(response.data.plan[0].reminderWho);
-                } else if (response.data.plan === []) {
-                    setAbsentee("___");
-                    setVoteDate("___");
-                    setReminderWho("___");
-                }
-        } catch(err){console.log(err)}
-    }
+            if (response.data.plan[0]) {
+                console.log(response.data.plan[0]);
+                setAbsentee(response.data.plan[0].absentee);
+                setVoteDate(response.data.plan[0].when);
+                setReminderWho(response.data.plan[0].reminderWho);
+            } else if (response.data.plan === []) {
+                setAbsentee("___");
+                setVoteDate("___");
+                setReminderWho("___");
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <Container>
@@ -158,7 +158,8 @@ const PrefForm = () => {
             </Box>
             <Box>
                 <Typography variant="h5">
-                    I will vote on {voteDate}, with an {absentee === true ? "Absentee" : "In person"} ballot, and I will remind{" "}
+                    I will vote on {voteDate}, with an{" "}
+                    {absentee === true ? "Absentee" : "In person"} ballot, and I will remind{" "}
                     {reminderWho} to vote as well.
                 </Typography>
             </Box>
