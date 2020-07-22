@@ -28,9 +28,8 @@ module.exports = {
 
             const token = await jwt.sign(jwt_payload, secret, { expiresIn: "1hr" });
             res.status(200).send({ token: `Bearer ${token}` });
-
         } catch (error) {
-            console.log(error)
+            console.log(error);
             res.status(400).send(error);
         }
     },
@@ -39,8 +38,8 @@ module.exports = {
 
         const { err } = await canLogin(req.body);
         if (err) return res.status(400).send(error.details[0].message);
-        
-        const existingUser = await User.findOne({ username })
+
+        const existingUser = await User.findOne({ username });
         if (!existingUser) return res.status(400).send("Username or password is incorrect!");
 
         const matching = await bcrypt.compare(password, existingUser.password);

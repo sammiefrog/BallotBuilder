@@ -18,13 +18,17 @@ function Alert(props) {
 const useStyles = makeStyles({
     root: {
         minWidth: 275,
-        margin: "10px"
+        margin: "10px",
+        border: "double blue"
     },
     title: {
         fontSize: 14
     },
     pos: {
         marginBottom: 12
+    },
+    button: {
+        fontSize: 14
     }
 });
 
@@ -58,14 +62,16 @@ function OutlinedCard(props) {
             <Card className={classes.root} variant="outlined">
                 <CardContent>
                     <Typography variant="h5" color="primary" gutterBottom>
+
                         {props.candidateName}
                     </Typography>
-                    <Typography className={classes.title}>
-                        Candidate Party: {props.candidateParty}
+                    <Typography className={classes.title} color="primary">
+                        Party: {props.candidateParty}
                     </Typography>
                 </CardContent>
                 <CardActions>
                     <Link
+                        className={classes.button}
                         component="button"
                         onClick={user.loggedIn ? loggedInClickHandler : () => setRedirect(true)}
                         size="small">
@@ -83,6 +89,7 @@ function OutlinedCard(props) {
                         </Alert>
                     </Snackbar>
                     <Link
+                        className={classes.button}
                         target="_blank"
                         rel="noopener noreferrer"
                         href={props.coreValues}

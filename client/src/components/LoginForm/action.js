@@ -9,7 +9,7 @@ const SendLoginInfo = async (username, password) => {
         });
         return reply;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
 };
 

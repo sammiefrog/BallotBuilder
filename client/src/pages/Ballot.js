@@ -7,7 +7,7 @@ import OutlinedCard from "../components/Card";
 import GridList from "@material-ui/core/GridList";
 import Container from "@material-ui/core/Container";
 import PrefForm from "../components/PrefForm";
-import { UserContext } from '../context/contexts/UserContext';
+import { UserContext } from "../context/contexts/UserContext";
 
 const useStyles = makeStyles({
     root: {
@@ -53,6 +53,7 @@ const Ballot = () => {
     const deleteCandidate = async id => {
         try {
             const res = await API.deleteCandidate(user.token, id);
+
             loadCandidates();
         } catch (err) {
             console.log(err);

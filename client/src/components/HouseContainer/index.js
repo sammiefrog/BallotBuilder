@@ -8,7 +8,7 @@ import { Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import { UserContext } from "../../context/contexts/UserContext";
-
+import Box from "@material-ui/core/Box";
 
 const useStyles = makeStyles({
     root: {
@@ -24,7 +24,8 @@ const useStyles = makeStyles({
     TextField: {
         "& > *": {
             width: "35ch"
-        }
+        },
+        marginRight: 5
     }
 });
 
@@ -33,7 +34,6 @@ export default function HouseContainer() {
     const [house, setHouse] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const { user } = useContext(UserContext);
-
 
     const getCandidates = async () => {
         try {
@@ -72,42 +72,56 @@ export default function HouseContainer() {
 
     let race = {
         hasRepublican: house.map(person =>
-                    person.electionStatus === "Running" &&
-                    person.electionParties === "Republican" &&
-                    person.electionParties !== "Write-In (Independent)" &&
-                    person.electionParties !== "Write-In" ?
-                   true:false
-                        ),
-        hasDemocrat : house.map(person =>
-                    person.electionStatus === "Running" &&
-                    person.electionParties === "Democratic" &&
-                    person.electionParties !== "Write-In (Independent)" &&
-                    person.electionParties !== "Write-In" ?
-                   true:false
-                        )
-        } 
-    console.log(race)
+            person.electionStatus === "Running" &&
+            person.electionParties === "Republican" &&
+            person.electionParties !== "Write-In (Independent)" &&
+            person.electionParties !== "Write-In"
+                ? true
+                : false
+        ),
+        hasDemocrat: house.map(person =>
+            person.electionStatus === "Running" &&
+            person.electionParties === "Democratic" &&
+            person.electionParties !== "Write-In (Independent)" &&
+            person.electionParties !== "Write-In"
+                ? true
+                : false
+        )
+    };
+    console.log(race);
 
     return (
         <Container className={classes.root}>
-            <form className={classes.TextField} noValidate autoComplete="off">
-                <TextField
-                    id="outlined-basic"
-                    label="Outlined"
-                    variant="outlined"
-                    onChange={handleInputChange}
-                    value={searchTerm}
-                />
-            </form>
-            <Button variant="contained" color="secondary" onClick={getCandidates}>
-                Search
-            </Button>
-            <Typography variant="h3">
+            <Box
+                display="flex"
+                flexDirection="row"
+                p={1}
+                m={1}
+                bgcolor="background.paper"
+                className={classes.root}>
+                <form className={classes.TextField} noValidate autoComplete="off">
+                    <TextField
+                        id="outlined-basic"
+                        label="Enter zip code"
+                        variant="outlined"
+                        onChange={handleInputChange}
+                        value={searchTerm}
+                    />
+                </form>
+                <Button variant="contained" color="primary" onClick={getCandidates}>
+                    Search
+                </Button>
+            </Box>
+            <Typography variant="h4">
                 House Candidates for TN Primary Election on August 6th
             </Typography>
-            
-            {race.hasDemocrat[0] || race.hasDemocrat[1] ? ( <Typography variant="h6">Democratic Primary</Typography>): ("") }
-            
+
+            {race.hasDemocrat[0] || race.hasDemocrat[1] ? (
+                <Typography variant="h6">Democratic Primary</Typography>
+            ) : (
+                ""
+            )}
+
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
@@ -131,7 +145,11 @@ export default function HouseContainer() {
                     )
                 )}
             </GridList>
-            {race.hasRepublican[0] || race.hasRepublican[1] ? ( <Typography variant="h6">Republican Primary</Typography>): ("") }
+            {race.hasRepublican[0] || race.hasRepublican[1] ? (
+                <Typography variant="h6">Republican Primary</Typography>
+            ) : (
+                ""
+            )}
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&

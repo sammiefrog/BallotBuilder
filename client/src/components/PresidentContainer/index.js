@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
 
-
 const useStyles = makeStyles({
     root: {
         justifyContent: "center",
@@ -25,8 +24,7 @@ export default function PresidentContainer() {
     const classes = useStyles();
     const [president, setPresident] = useState([]);
     const { user } = useContext(UserContext);
-    console.log(user)
-
+    console.log(user);
 
     useEffect(() => {
         getPresident();
@@ -62,7 +60,7 @@ export default function PresidentContainer() {
 
     return (
         <Container className={classes.root}>
-            <Typography variant="h3">
+            <Typography variant="h4">
                 Presidential Candidates for November 3rd General Election
             </Typography>
             <GridList className={classes.gridList} cols={3}>
