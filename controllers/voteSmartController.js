@@ -8,111 +8,114 @@ const jwt = require("jsonwebtoken");
 
 // Defining methods for the voteSmart controller
 module.exports = {
-    presidentialCandidates: (req, res) => {
-        axios
-            .get(FEDURL + APIKEY + "&officeId=1&o=JSON")
-            .then(results => {
+    presidentialCandidates: async (req, res) => {
+        try {
+            const results = await axios.get(FEDURL + APIKEY + "&officeId=1&o=JSON")
                 res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
+        } catch(error){console.log(error)}
     },
-    senateCandidates: (req, res) => {
-        axios
-            .get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
-            .then(results => {
+    senateCandidates: async (req, res) => {
+        try {
+            const results = await axios.get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
                 res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    districtByZip: (req, res) => {
-        const zip = req.params.zip;
-        console.log(zip);
-        axios
-            .get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON")
-            .then(results => {
-                res.json(results.data.districtList.district[0].districtId);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    houseCandidatesByDistrict: (req, res) => {
-        const distId = req.params.distId;
-        axios
-            .get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
-            .then(results => {
-                console.log(results);
-                res.json(results.data.candidateList);
-            })
-            .catch(err => {
-                res.json(err);
-            });
-    },
-    savePlan: (req, res) => {
-        let decoded = jwt.decode(req.params.token);
+        } catch (error) {
+            console.log(error);
+        }
 
-        db.Plan.create(req.body)
-            .then(({ _id }) =>
-                db.User.findByIdAndUpdate(decoded.id, { $set: { plan: _id } }, { new: true })
-            )
-            .then(dbModel => {
-                console.log(dbModel);
-                res.json(dbModel);
-            })
-            .catch(err => res.status(422).json(err));
+    },
+    districtByZip: async (req, res) => {
+        const zip = req.params.zip;
+        try {
+            const results = await axios.get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON")
+                res.json(results.data.districtList.district[0].districtId);
+        } catch (error) {
+            console.log(error);
+        }
+
+    },
+    houseCandidatesByDistrict: async (req, res) => {
+        const distId = req.params.distId;
+        try {
+            const results = await axios.get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
+                res.json(results.data.candidateList);
+        } catch (error) {
+            console.log(error)
+        }
+
+    },
+    savePlan: async (req, res) => {
+        let decoded = jwt.decode(req.params.token);
+        try {
+            await db.Plan.create(req.body)
+                .then(({ _id }) =>
+                    db.User.findByIdAndUpdate(decoded.id, { $set: { plan: _id } }, { new: true })
+                )
+                .then(dbModel => {
+                    console.log(dbModel);
+                    res.json(dbModel);
+                });
+        } catch (error) {
+            res.status(422).json(error);
+
+        }
+
     },
     getPlan: async (req, res) => {
         try {
             let decoded = await jwt.decode(req.params.token);
-            console.log(decoded);
+
             db.User.findById(decoded.id)
                 .populate("plan")
                 .then(dbModel => res.json(dbModel))
-                .catch(err => res.status(422).json(err));
         } catch (error) {
-            console.log(error);
+            res.status(422).json(error);
         }
     },
-    saveCandidates: (req, res) => {
-        let decoded = jwt.decode(req.params.token);
+    saveCandidates: async (req, res) => {
+        try {
+            let decoded = await jwt.decode(req.params.token);
+            db.Candidate.create(req.body)
+                .then(({ _id }) =>
+                    db.User.findByIdAndUpdate(
+                        decoded.id,
+                        { $push: { candidates: _id } },
+                        { new: true }
+                    )
+                )
+                .then(dbModel => {
+                    console.log(dbModel);
+                    res.json(dbModel);
+                });
+        } catch (error) {
+            res.status(422).json(error);
+        }
+    },
+    getSavedCandidates: async (req, res) => {
+        try {
+            let decoded = await jwt.decode(req.params.token);
+                db.User.findById(decoded.id)
+                    .populate("candidates")
+                    .then(dbModel => res.json(dbModel))
 
-        db.Candidate.create(req.body)
-            .then(({ _id }) =>
-                db.User.findByIdAndUpdate(decoded.id, { $push: { candidates: _id } }, { new: true })
+        } catch (error) {
+            res.status(422).json(error);
+        }
+
+    },
+    deleteCandidate: async (req, res) => {
+        try {
+            let decoded = await jwt.decode(req.params.token);
+            db.User.updateOne(
+                { _id: decoded.id },
+                { $pull: { candidates: req.params.id } },
+                { safe: true }
             )
-            .then(dbModel => {
-                console.log(dbModel);
-                res.json(dbModel);
-            })
-            .catch(err => res.status(422).json(err));
-    },
-    getSavedCandidates: (req, res) => {
-        let decoded = jwt.decode(req.params.token);
-        if (req.params.token) {
-            db.User.findById(decoded.id)
-                .populate("candidates")
-                .then(dbModel => res.json(dbModel))
-                .catch(err => res.status(422).json(err));
-        } else {
-            res.status(422).json(err);
+                .then(dbModel => {
+                    console.log(dbModel);
+                    res.json(dbModel);
+                })
+        } catch (error) {
+            res.status(422).json(error);
         }
-    },
-    deleteCandidate: (req, res) => {
-        let decoded = jwt.decode(req.params.token);
-
-        db.User.updateOne(
-            { _id: decoded.id },
-            { $pull: { candidates: req.params.id } },
-            { safe: true }
-        )
-            .then(dbModel => {
-                console.log(dbModel);
-                res.json(dbModel);
-            })
-            .catch(err => res.status(422).json(err));
     }
 };
