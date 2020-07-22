@@ -9,7 +9,6 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { UserContext, UserContextProvider } from "./context/contexts/UserContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import purple from "@material-ui/core/colors/purple";
 
 const theme = createMuiTheme({
     palette: {
@@ -24,8 +23,6 @@ const theme = createMuiTheme({
 });
 
 function App() {
-
-
 
     return (
         <ThemeProvider theme={theme}>

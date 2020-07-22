@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         height: 900,
         justifyContent: "center",
         margin: "25px",
-        background: "#33c9dc",
+        background: "secondary.main",
         [theme.breakpoints.down("sm")]: {
             backgroundColor: theme.palette.secondary.main,
             marginBottom: "55px"
@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
         marginBottom: "20px"
     },
     avatar: {
-        backgroundColor: "#f73378"
+        backgroundColor: "primary.main"
     }
 }));
 
