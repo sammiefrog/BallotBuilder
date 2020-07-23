@@ -9,7 +9,8 @@ const useStyles = makeStyles({
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        marginBottom: 20
+        padding: 5,
+        margin: 20,
     }
 });
 
@@ -17,14 +18,13 @@ const Home = () => {
     const classes = useStyles();
     return (
         <div>
-            <Box className={classes.home}>
-                <Typography variant="h2">Home Page</Typography>
+            <Box border={1} borderColor="secondary.main" className={classes.home}>
+                <Typography variant="h2">Welcome to Tennessee Ballot Builder!</Typography>
                 <Typography variant="h6">
-                    Welcome to Tennessee Ballot Builder. We're here to help you plan for future
-                    elections. You can view candidates for federal office as they will appear on
-                    your future ballot. There's also an opportunity to learn more about candidate
-                    values. To further personalize your experience, log in and to save preferred
-                    candidates and create a voting plan.
+                    We're here to help you plan for future elections. You can view candidates for
+                    federal office as they will appear on your future ballot. There's also an
+                    opportunity to learn more about candidate values. To further personalize your
+                    experience, log in and to save preferred candidates and create a voting plan.
                 </Typography>
             </Box>
             <TabPanel />

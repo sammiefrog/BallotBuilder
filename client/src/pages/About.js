@@ -44,7 +44,7 @@ const About = () => {
                     href="https://web.go-vote-tn.elections.tn.gov/">
                     visit here.
                 </a>{" "}
-                Whether you binge news or getting informed for the first time, voting is for
+                Whether you binge news or are getting informed for the first time, voting is for
                 everyone.
             </Typography>
             <Box
