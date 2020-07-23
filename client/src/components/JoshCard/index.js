@@ -19,13 +19,12 @@ const useStyles = makeStyles(theme => ({
         height: 900,
         justifyContent: "center",
         margin: "25px",
-        background: "#33c9dc",
+        background: theme.palette.primary.light,
+        color: "black",
         [theme.breakpoints.down("sm")]: {
-            backgroundColor: theme.palette.secondary.main,
             marginBottom: "55px"
         },
         [theme.breakpoints.down("lg")]: {
-            backgroundColor: "#33c9dc",
             marginBottom: "55px"
         }
     },
@@ -33,19 +32,8 @@ const useStyles = makeStyles(theme => ({
         height: "350px",
         paddingTop: "56.25%"
     },
-    expand: {
-        transform: "rotate(0deg)",
-        marginLeft: "auto",
-        transition: theme.transitions.create("transform", {
-            duration: theme.transitions.duration.shortest
-        })
-    },
-    expandOpen: {
-        transform: "rotate(180deg)",
-        marginBottom: "20px"
-    },
     avatar: {
-        backgroundColor: "#f73378"
+        backgroundColor: theme.palette.secondary.light
     }
 }));
 
@@ -69,7 +57,7 @@ export default function JoshCard() {
                 title="Josh"
             />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
+                <Typography variant="body2" color="black" component="p">
                     Whoa there! You registered to vote right? I started voting because I'm a Black
                     man from the Deep South, and will continue to vote for the remainder of my
                     membership in this race. I hope you have a reason to do the same. Keepin' it

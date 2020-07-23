@@ -19,7 +19,8 @@ const useStyles = makeStyles({
     root: {
         minWidth: 275,
         margin: "10px",
-        border: "double blue"
+        border: "double",
+        borderColor: "#ff3d00",
     },
     title: {
         fontSize: 14
@@ -62,10 +63,9 @@ function OutlinedCard(props) {
             <Card className={classes.root} variant="outlined">
                 <CardContent>
                     <Typography variant="h5" color="primary" gutterBottom>
-
                         {props.candidateName}
                     </Typography>
-                    <Typography className={classes.title} color="primary">
+                    <Typography className={classes.title} color="secondary">
                         Party: {props.candidateParty}
                     </Typography>
                 </CardContent>

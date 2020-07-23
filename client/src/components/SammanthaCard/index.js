@@ -19,13 +19,12 @@ const useStyles = makeStyles(theme => ({
         height: 900,
         justifyContent: "center",
         margin: "25px",
-        background: "secondary.main",
+        color: 'black',
+        background: theme.palette.primary.light,
         [theme.breakpoints.down("sm")]: {
-            backgroundColor: theme.palette.secondary.main,
             marginBottom: "55px"
         },
         [theme.breakpoints.down("lg")]: {
-            backgroundColor: "#33c9dc",
             marginBottom: "55px"
         }
     },
@@ -33,19 +32,8 @@ const useStyles = makeStyles(theme => ({
         height: "350px",
         paddingTop: "56.25%"
     },
-    expand: {
-        transform: "rotate(0deg)",
-        marginLeft: "auto",
-        transition: theme.transitions.create("transform", {
-            duration: theme.transitions.duration.shortest
-        })
-    },
-    expandOpen: {
-        transform: "rotate(180deg)",
-        marginBottom: "20px"
-    },
     avatar: {
-        backgroundColor: "primary.main"
+        backgroundColor: theme.palette.secondary.light
     }
 }));
 
@@ -69,10 +57,8 @@ export default function SammanthaCard() {
                 title="Sammantha"
             />
             <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                    For the past five years I have been a resident of Nashville, TN. Recently, I
-                    obtained a Coding Bootcamp Certificate from Vanderbilt University. I am now a
-                    Full-Stack Web Developer specializing in the MERN Stack.
+                <Typography variant="body2" color="black" component="p">
+                    Hey! I finally registered to vote, not sure what took me so long but it's 2020... yanno. That motivated me to make an easy-to-use site where people can simply access information and save their preferences, because voting can seem overwhelming!
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
