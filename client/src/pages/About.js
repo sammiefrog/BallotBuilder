@@ -25,7 +25,7 @@ const About = () => {
         <Box className={classes.header}>
             <Typography variant="h2">About</Typography>
             <Typography variant="h6">
-                In times of crisis, who we choose to lead is the all the more consequential.
+                In times of crisis, who we choose to lead is all the more consequential.
                 Unfortunately, information on candidates, when, where and how to vote can be hard to
                 find and even harder to remember. We created Ballot Builder for new and experienced
                 Tennessee voters to learn more about candidates for federal office, build their
