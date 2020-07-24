@@ -11,6 +11,7 @@ const jwt = require("jsonwebtoken");
 module.exports = {
     presidentialCandidates: async (req, res) => {
         try {
+
             const results = await axios.get(`${FEDURL + APIKEY}&officeId=1&o=JSON`);
             res.json(results.data.candidateList);
         } catch (error) {
@@ -19,6 +20,7 @@ module.exports = {
     },
     senateCandidates: async (req, res) => {
         try {
+
             const results = await axios.get(`${FEDURL + APIKEY}&officeId=6&stateId=TN&o=JSON`);
             res.json(results.data.candidateList);
         } catch (error) {
@@ -28,6 +30,7 @@ module.exports = {
     districtByZip: async (req, res) => {
         const zip = req.params.zip;
         try {
+
             const results = await axios.get(`${DISTRICTURL + APIKEY}&zip5=${zip}&o=JSON`);
             res.json(results.data.districtList.district[0].districtId);
         } catch (error) {

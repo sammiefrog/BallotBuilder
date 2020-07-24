@@ -23,15 +23,20 @@ const useStyles = makeStyles(theme => ({
         background: theme.palette.primary.light,
         color: "black",
         [theme.breakpoints.down("sm")]: {
-            marginBottom: "55px"
+            width: "380px",
+            height: "100%"
         },
-        [theme.breakpoints.down("lg")]: {
-            marginBottom: "55px"
+        [theme.breakpoints.down("md")]: {
+            width: "400px",
+            height: "100%"
         }
     },
     media: {
         height: "350px",
-        paddingTop: "56.25%"
+        paddingTop: "56.25%",
+        [theme.breakpoints.down("sm")]: {
+            height: "250px"
+        }
     },
     avatar: {
         backgroundColor: theme.palette.secondary.light

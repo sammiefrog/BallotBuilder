@@ -15,13 +15,12 @@ import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
     root: {
-        maxWidth: "100%",
-        margin: "10px"
+        margin: "10px",
+        padding: "10px"
     },
     textfields: {
         "& > *": {
-            margin: theme.spacing(1),
-            width: "25ch"
+            margin: theme.spacing(1)
         }
     },
     formControl: {
@@ -29,7 +28,6 @@ const useStyles = makeStyles(theme => ({
     },
     button: {
         margin: "10px",
-        display: "flex",
         justifyContent: "center",
         alignItems: "center",
         textAlign: "center"
@@ -51,11 +49,10 @@ const PrefForm = () => {
     const [voteDate, setVoteDate] = useState("");
     const [reminderWho, setReminderWho] = useState("");
     const [absentee, setAbsentee] = useState(false);
-    const [content, setContent] = useState("");
 
     useEffect(() => {
         loadPlan();
-    }, []);
+    });
 
     const savePlan = async () => {
         try {

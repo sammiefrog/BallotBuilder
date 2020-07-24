@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import SammanthaCard from "../components/SammanthaCard";
 import JoshCard from "../components/JoshCard";
 
-const useStyles = makeStyles({
+const useStyles = makeStyles(theme => ({
     header: {
         padding: "25px",
         margin: "20px",
@@ -16,9 +16,15 @@ const useStyles = makeStyles({
     },
     scard: {
         alignItems: "center",
-        justifyContent: "center"
+        justifyContent: "center",
+        [theme.breakpoints.down("sm")]: {
+            flexDirection: "column"
+        },
+        [theme.breakpoints.down("md")]: {
+            flexDirection: "column"
+        }
     }
-});
+}));
 
 // About page
 const About = () => {

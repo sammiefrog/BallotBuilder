@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { UserContext, UserContextProvider } from "./context/contexts/UserContext";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Container } from "@material-ui/core";
 
 const theme = createMuiTheme({
     palette: {
@@ -33,7 +34,7 @@ function App() {
                     {({ user }) => {
                         return (
                             <Router>
-                                <div>
+                                <Container fluid>
                                     <AppBarNav />
                                     <Switch>
                                         <Route exact path={["/", "/home"]} component={Home} />
@@ -47,7 +48,7 @@ function App() {
                                         <Route exact path="/register" component={Register} />
                                         <Route exact path="/about" component={About} />
                                     </Switch>
-                                </div>
+                                </Container>
                             </Router>
                         );
                     }}
