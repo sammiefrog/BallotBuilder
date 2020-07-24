@@ -10,7 +10,7 @@ const useStyles = makeStyles({
         justifyContent: "center",
         textAlign: "center",
         padding: 5,
-        margin: 20,
+        margin: 20
     }
 });
 

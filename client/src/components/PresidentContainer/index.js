@@ -30,7 +30,6 @@ export default function PresidentContainer() {
         getPresident();
     }, []);
 
-
     const getPresident = async () => {
         try {
             const response = await API.getPresident();

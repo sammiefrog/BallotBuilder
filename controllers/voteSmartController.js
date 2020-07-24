@@ -10,38 +10,39 @@ const jwt = require("jsonwebtoken");
 module.exports = {
     presidentialCandidates: async (req, res) => {
         try {
-            const results = await axios.get(FEDURL + APIKEY + "&officeId=1&o=JSON")
-                res.json(results.data.candidateList);
-        } catch(error){console.log(error)}
-    },
-    senateCandidates: async (req, res) => {
-        try {
-            const results = await axios.get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON")
-                res.json(results.data.candidateList);
+            const results = await axios.get(FEDURL + APIKEY + "&officeId=1&o=JSON");
+            res.json(results.data.candidateList);
         } catch (error) {
             console.log(error);
         }
-
+    },
+    senateCandidates: async (req, res) => {
+        try {
+            const results = await axios.get(FEDURL + APIKEY + "&officeId=6&stateId=TN&o=JSON");
+            res.json(results.data.candidateList);
+        } catch (error) {
+            console.log(error);
+        }
     },
     districtByZip: async (req, res) => {
         const zip = req.params.zip;
         try {
-            const results = await axios.get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON")
-                res.json(results.data.districtList.district[0].districtId);
+            const results = await axios.get(DISTRICTURL + APIKEY + "&zip5=" + zip + "&o=JSON");
+            res.json(results.data.districtList.district[0].districtId);
         } catch (error) {
             console.log(error);
         }
-
     },
     houseCandidatesByDistrict: async (req, res) => {
         const distId = req.params.distId;
         try {
-            const results = await axios.get(CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON")
-                res.json(results.data.candidateList);
+            const results = await axios.get(
+                CANDIDATEURL + APIKEY + "&districtId=" + distId + "&o=JSON"
+            );
+            res.json(results.data.candidateList);
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
-
     },
     savePlan: async (req, res) => {
         let decoded = jwt.decode(req.params.token);
@@ -56,9 +57,7 @@ module.exports = {
                 });
         } catch (error) {
             res.status(422).json(error);
-
         }
-
     },
     getPlan: async (req, res) => {
         try {
@@ -66,7 +65,7 @@ module.exports = {
 
             db.User.findById(decoded.id)
                 .populate("plan")
-                .then(dbModel => res.json(dbModel))
+                .then(dbModel => res.json(dbModel));
         } catch (error) {
             res.status(422).json(error);
         }
@@ -93,14 +92,12 @@ module.exports = {
     getSavedCandidates: async (req, res) => {
         try {
             let decoded = await jwt.decode(req.params.token);
-                db.User.findById(decoded.id)
-                    .populate("candidates")
-                    .then(dbModel => res.json(dbModel))
-
+            db.User.findById(decoded.id)
+                .populate("candidates")
+                .then(dbModel => res.json(dbModel));
         } catch (error) {
             res.status(422).json(error);
         }
-
     },
     deleteCandidate: async (req, res) => {
         try {
@@ -109,11 +106,10 @@ module.exports = {
                 { _id: decoded.id },
                 { $pull: { candidates: req.params.id } },
                 { safe: true }
-            )
-                .then(dbModel => {
-                    console.log(dbModel);
-                    res.json(dbModel);
-                })
+            ).then(dbModel => {
+                console.log(dbModel);
+                res.json(dbModel);
+            });
         } catch (error) {
             res.status(422).json(error);
         }

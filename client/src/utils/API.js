@@ -13,22 +13,22 @@ export default {
     saveCandidate: (token, data) => {
         return axios.post("/api/saved/" + token, data);
     },
-    getSaved: (token) =>{
+    getSaved: token => {
         return axios.get("/api/saved/" + token);
     },
-    deleteCandidate:  (token, id) => {
+    deleteCandidate: (token, id) => {
         return axios.delete("/api/saved/" + token + "/" + id);
     },
-    getDistrict: (zip) => {
+    getDistrict: zip => {
         return axios.get("/api/district/" + zip);
     },
-    getHouseCandidates: (distId) => {
+    getHouseCandidates: distId => {
         return axios.get("/api/candidate/" + distId);
     },
     savePlan: (token, plan) => {
         return axios.post("/api/plan/" + token, plan);
     },
-    getPlan: (token) => {
+    getPlan: token => {
         return axios.get("/api/plan/" + token);
     }
 };

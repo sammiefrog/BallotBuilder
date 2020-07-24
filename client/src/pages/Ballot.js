@@ -39,7 +39,7 @@ const Ballot = () => {
 
     useEffect(() => {
         loadCandidates();
-    }, []);
+    });
 
     const loadCandidates = async () => {
         try {

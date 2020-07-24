@@ -7,7 +7,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
-import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
@@ -20,7 +19,7 @@ const useStyles = makeStyles({
         minWidth: 275,
         margin: "10px",
         border: "double",
-        borderColor: "#ff3d00",
+        borderColor: "#ff3d00"
     },
     title: {
         fontSize: 14
@@ -44,8 +43,9 @@ function OutlinedCard(props) {
         try {
             await setOpen(true);
             props.action();
-        }catch(error){console.log(error)}
-        
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleClose = (event, reason) => {

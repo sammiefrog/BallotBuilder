@@ -19,18 +19,23 @@ const useStyles = makeStyles(theme => ({
         height: 900,
         justifyContent: "center",
         margin: "25px",
-        color: 'black',
+        color: "black",
         background: theme.palette.primary.light,
         [theme.breakpoints.down("sm")]: {
-            marginBottom: "55px"
+            width: "400px",
+            height: "100%"
         },
-        [theme.breakpoints.down("lg")]: {
-            marginBottom: "55px"
+        [theme.breakpoints.down("md")]: {
+            width: "400px",
+            height: "100%"
         }
     },
     media: {
         height: "350px",
-        paddingTop: "56.25%"
+        paddingTop: "56.25%",
+        [theme.breakpoints.down("sm")]: {
+            height: "250px"
+        }
     },
     avatar: {
         backgroundColor: theme.palette.secondary.light
@@ -58,7 +63,10 @@ export default function SammanthaCard() {
             />
             <CardContent>
                 <Typography variant="body2" color="black" component="p">
-                    Hey! I finally registered to vote, not sure what took me so long but it's 2020... yanno. That motivated me to make an easy-to-use site where people can simply access information and save their preferences, because voting can seem overwhelming!
+                    Hey! I finally registered to vote, not sure what took me so long but it's
+                    2020... yanno. That motivated me to make an easy-to-use site where people can
+                    simply access information and save their preferences, because voting can seem
+                    overwhelming!
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>

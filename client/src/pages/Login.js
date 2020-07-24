@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import LoginForm from "../components/LoginForm";
 import Box from "@material-ui/core/Box";
 import Typography from "@material-ui/core/Typography";
-import Link from "@material-ui/core/Link";
 import { Container } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
