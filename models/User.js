@@ -1,6 +1,8 @@
+// importing required dependency
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
+// model for users
 const userSchema = new Schema({
     username: {
         type: String,
@@ -32,4 +34,5 @@ const userSchema = new Schema({
     }
 });
 
+// exporting model to be used in other parts of the application
 module.exports = mongoose.model("User", userSchema);

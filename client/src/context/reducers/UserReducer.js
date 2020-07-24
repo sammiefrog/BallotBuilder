@@ -1,3 +1,4 @@
+// changes state of user based on user input/action; exported to other parts of the application
 export const UserReducer = (state, action) => {
     switch (action.type) {
         case "REGISTRATION_SUCCEEDED":

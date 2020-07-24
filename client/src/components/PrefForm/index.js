@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useState, useContext, useEffect } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -39,6 +40,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// Form where user's preferences live
 const PrefForm = () => {
     const classes = useStyles();
     const { user } = useContext(UserContext);
@@ -62,7 +64,6 @@ const PrefForm = () => {
                 absentee: selectedValue,
                 reminderWho: reminder
             });
-            console.log(save);
             setSelectedValue(false);
             setDate("");
             setReminder("");
@@ -76,11 +77,9 @@ const PrefForm = () => {
         try {
             const response = await API.getPlan(user.token);
             if (response.data.plan[0]) {
-                console.log(response.data.plan[0]);
                 setAbsentee(response.data.plan[0].absentee);
                 setVoteDate(response.data.plan[0].when);
                 setReminderWho(response.data.plan[0].reminderWho);
-
             } else if (response.data.plan === []) {
                 setAbsentee("___");
                 setVoteDate("___");
@@ -160,12 +159,14 @@ const PrefForm = () => {
             </Box>
             <Box>
                 <Typography variant="h5">
-                    I will vote on {voteDate}, with an {absentee === true ? " Absentee" : " In person"} ballot, and I will remind {reminderWho} to vote as well.
-
+                    I will vote on {voteDate}, with an{" "}
+                    {absentee === true ? " Absentee" : " In person"} ballot, and I will remind{" "}
+                    {reminderWho} to vote as well.
                 </Typography>
             </Box>
         </Container>
     );
 };
 
+// exporting component to be used in other parts of the application
 export default PrefForm;

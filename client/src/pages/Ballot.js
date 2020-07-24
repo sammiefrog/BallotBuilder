@@ -1,3 +1,4 @@
+// importing necessary dependencies, components and styling
 import React, { useEffect, useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Box from "@material-ui/core/Box";
@@ -32,6 +33,7 @@ const useStyles = makeStyles({
     }
 });
 
+// My Ballot Page
 const Ballot = () => {
     const classes = useStyles();
     const [candidates, setCandidates] = useState([]);
@@ -88,4 +90,5 @@ const Ballot = () => {
     );
 };
 
+// exporting page to be used in other parts of the application
 export default Ballot;

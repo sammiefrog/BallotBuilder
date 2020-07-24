@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// About card for Josh; exporting to be used in other parts of the application
 export default function JoshCard() {
     const classes = useStyles();
 
@@ -49,7 +51,7 @@ export default function JoshCard() {
                     </Avatar>
                 }
                 title="Josh Everett"
-                subheader="Web Developer Trying to Make them Full Stacks"
+                subheader="Full Stack Web Developer"
             />
             <CardMedia
                 className={classes.media}

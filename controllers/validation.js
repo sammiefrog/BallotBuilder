@@ -1,5 +1,7 @@
+// importing necessary dependency
 const Joi = require("@hapi/joi");
 
+// controls user validation including length of username and password
 module.exports = {
     canRegister: data => {
         const schema = Joi.object({

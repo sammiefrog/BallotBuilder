@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Redirect } from "react-router-dom";
@@ -7,10 +8,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Link from "@material-ui/core/Link";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
-import Button from "@material-ui/core/Button";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
+// snackbar that alerts user to successful save and deletion
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -20,7 +21,7 @@ const useStyles = makeStyles({
         minWidth: 275,
         margin: "10px",
         border: "double",
-        borderColor: "#ff3d00",
+        borderColor: "#ff3d00"
     },
     title: {
         fontSize: 14
@@ -33,6 +34,7 @@ const useStyles = makeStyles({
     }
 });
 
+// card that contains candidate info
 function OutlinedCard(props) {
     const classes = useStyles();
     const { user } = useContext(UserContext);
@@ -44,8 +46,9 @@ function OutlinedCard(props) {
         try {
             await setOpen(true);
             props.action();
-        }catch(error){console.log(error)}
-        
+        } catch (error) {
+            console.log(error);
+        }
     };
 
     const handleClose = (event, reason) => {
@@ -101,4 +104,6 @@ function OutlinedCard(props) {
         );
     }
 }
+
+// exporting component to be used in other parts of the application
 export default OutlinedCard;

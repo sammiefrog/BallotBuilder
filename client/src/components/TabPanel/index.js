@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
@@ -11,6 +12,7 @@ import SenateContainer from "../SenateContainer";
 import PresidentContainer from "../PresidentContainer";
 import HouseContainer from "../HouseContainer";
 
+// Tab panel for home page for each election
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
 
@@ -50,6 +52,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// exporting component to be used in other parts of the application
 export default function FullWidthTabs() {
     const classes = useStyles();
     const theme = useTheme();

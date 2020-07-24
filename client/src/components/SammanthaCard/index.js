@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -19,7 +20,7 @@ const useStyles = makeStyles(theme => ({
         height: 900,
         justifyContent: "center",
         margin: "25px",
-        color: 'black',
+        color: "black",
         background: theme.palette.primary.light,
         [theme.breakpoints.down("sm")]: {
             marginBottom: "55px"
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// about card for Sammantha and exporting component
 export default function SammanthaCard() {
     const classes = useStyles();
 
@@ -58,7 +60,10 @@ export default function SammanthaCard() {
             />
             <CardContent>
                 <Typography variant="body2" color="black" component="p">
-                    Hey! I finally registered to vote, not sure what took me so long but it's 2020... yanno. That motivated me to make an easy-to-use site where people can simply access information and save their preferences, because voting can seem overwhelming!
+                    Hey! I finally registered to vote, not sure what took me so long but it's
+                    2020... yanno. That motivated me to make an easy-to-use site where people can
+                    simply access information and save their preferences, because voting can seem
+                    overwhelming!
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
