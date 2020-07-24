@@ -1,3 +1,4 @@
+// importing necessary dependencies, components and styling
 import React from "react";
 import TabPanel from "../components/TabPanel";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,10 +11,11 @@ const useStyles = makeStyles({
         justifyContent: "center",
         textAlign: "center",
         padding: 5,
-        margin: 20,
+        margin: 20
     }
 });
 
+// Home Page
 const Home = () => {
     const classes = useStyles();
     return (
@@ -32,4 +34,5 @@ const Home = () => {
     );
 };
 
+// exporting page to be used in other parts of the application
 export default Home;

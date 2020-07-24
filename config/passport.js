@@ -1,3 +1,4 @@
+// passport configuration
 const User = require("../models/User");
 const { secret } = require("./keys");
 const JwtStrategy = require("passport-jwt").Strategy;

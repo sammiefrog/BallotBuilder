@@ -1,16 +1,15 @@
+// importing required dependency
 const mongoose = require("mongoose");
-// Not using as model - template for a form
+
+//Model for voting plan created by user
 const planSchema = new mongoose.Schema({
-    // can ask if they plan on early voting or voting the day of the election. They'll input and include date if they want
     when: {
         type: String
     },
-    // whether or not they plan to vote absentee
     absentee: {
         type: Boolean,
         default: false
     },
-    // who will the user remind
     reminderWho: {
         type: String
     },
@@ -20,4 +19,5 @@ const planSchema = new mongoose.Schema({
     }
 });
 
+// exporting model to be used in other parts of the application
 module.exports = mongoose.model("Plan", planSchema);

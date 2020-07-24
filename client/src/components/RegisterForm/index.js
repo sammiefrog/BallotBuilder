@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -29,6 +30,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// login form
 const RegistrationForm = () => {
     const { user, dispatch } = useContext(UserContext);
     const classes = useStyles();
@@ -48,7 +50,6 @@ const RegistrationForm = () => {
         if (password === match) {
             try {
                 const response = await SendRegistration(username, password);
-                console.log(response);
                 dispatch({
                     type: "REGISTRATION_SUCCEEDED",
                     payload: { token: response.data.token, message: "Thanks for Registering!" }
@@ -129,4 +130,5 @@ const RegistrationForm = () => {
     return <div>{content}</div>;
 };
 
+// exporting component to be used in other parts of the application
 export default RegistrationForm;

@@ -1,9 +1,11 @@
+// importing necessary files and dependencies
 const User = require("../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { canRegister, canLogin } = require("./validation");
 const { secret } = require("../config/keys");
 
+// exporting methods for testing and validating user input when registering and logging in
 module.exports = {
     RegistrationController: async (req, res) => {
         const { username, password } = req.body;

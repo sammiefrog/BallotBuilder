@@ -1,5 +1,7 @@
+// importing required dependency
 const mongoose = require("mongoose");
 
+// model for candidates
 const candidateSchema = new mongoose.Schema({
     candidateName: {
         type: String,
@@ -24,4 +26,5 @@ const candidateSchema = new mongoose.Schema({
     }
 });
 
+// exporting model to be used in other parts of the application
 module.exports = mongoose.model("Candidate", candidateSchema);

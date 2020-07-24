@@ -1,3 +1,4 @@
+// importing necessary dependencies, components and styling
 import React from "react";
 import { Typography } from "@material-ui/core";
 import Box from "@material-ui/core/Box";
@@ -19,6 +20,7 @@ const useStyles = makeStyles({
     }
 });
 
+// About page
 const About = () => {
     const classes = useStyles();
     return (
@@ -26,11 +28,11 @@ const About = () => {
             <Typography variant="h2">About</Typography>
             <Typography variant="h6">
                 In times of crisis, who we choose to lead is all the more consequential.
-                Unfortunately, information on candidates, when, where and how to vote can be hard to
-                find and even harder to remember. We created Ballot Builder for new and experienced
-                Tennessee voters to learn more about candidates for federal office, build their
-                preliminary ballot, and create a voting plan they can refer back to. For more info
-                on absentee voting,{" "}
+                Unfortunately, information on when, where and how to vote can be hard to find and
+                even harder to remember. We created Ballot Builder for new and experienced Tennessee
+                voters to learn more about candidates for federal office, build their preliminary
+                ballot, and create a voting plan they can refer back to. For more info on absentee
+                voting,{" "}
                 <a
                     target="_blank"
                     rel="noopener noreferrer"
@@ -61,4 +63,5 @@ const About = () => {
     );
 };
 
+// exporting page to be used in other parts of the application
 export default About;

@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -31,6 +32,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// login form
 const LoginForm = () => {
     const classes = useStyles();
     const { user, dispatch } = useContext(UserContext);
@@ -104,4 +106,5 @@ const LoginForm = () => {
     return <div>{content}</div>;
 };
 
+// exporting component to be used in other parts of the application
 export default LoginForm;

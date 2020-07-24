@@ -1,6 +1,8 @@
+// importing required dependency and file for user
 const passport = require("passport");
 const { RegistrationController, LoginController } = require("../controllers/userController");
 
+// routes for registration, login, and validation
 module.exports = app => {
     app.post("/api/user/register", RegistrationController);
 
