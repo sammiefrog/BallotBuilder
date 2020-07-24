@@ -39,6 +39,7 @@ const LoginForm = () => {
     const auth = user.loggedIn;
     const message = user.message;
     let content;
+    console.log(message)
 
     const handleFormSubmit = async event => {
         event.preventDefault();
@@ -52,7 +53,7 @@ const LoginForm = () => {
         } catch (error) {
             dispatch({
                 type: "LOGIN_FAILED",
-                payload: { error: error.response.data }
+                payload: { error: error.response.data, message: "Login Failed! Please Try Again." }
             });
             setPassword("");
         }

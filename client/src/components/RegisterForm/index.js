@@ -57,7 +57,7 @@ const RegistrationForm = () => {
                 console.log(error);
                 dispatch({
                     type: "REGISTRATION_FAILED",
-                    payload: { error: error.response.data }
+                    payload: { error: error.response.data, message: "Registration failed, please try again!" }
                 });
                 setPassword("");
             }
