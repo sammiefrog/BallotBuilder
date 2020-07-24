@@ -82,8 +82,8 @@ function OutlinedCard(props) {
                     </Link>
                     <Snackbar
                         anchorOrigin={{
-                            vertical: "left",
-                            horizontal: "left"
+                            vertical: "top",
+                            horizontal: "right"
                         }}
                         open={open}
                         onClose={handleClose}>
