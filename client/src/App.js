@@ -1,5 +1,5 @@
+// importing necessary dependencies, components, pages and styling
 import React from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import AppBarNav from "./components/AppBarNav";
 import Ballot from "./pages/Ballot";
@@ -25,6 +25,7 @@ const theme = createMuiTheme({
     }
 });
 
+// rendering application
 function App() {
     return (
         <ThemeProvider theme={theme}>
@@ -57,4 +58,5 @@ function App() {
     );
 }
 
+// exporting for use in other parts of the application
 export default App;

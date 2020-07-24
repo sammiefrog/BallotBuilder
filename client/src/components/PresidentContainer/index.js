@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useEffect, useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
@@ -20,11 +21,11 @@ const useStyles = makeStyles({
     }
 });
 
+// container for presidential candidates and exporting component for other parts of application
 export default function PresidentContainer() {
     const classes = useStyles();
     const [president, setPresident] = useState([]);
     const { user } = useContext(UserContext);
-    console.log(user);
 
     useEffect(() => {
         getPresident();
@@ -85,11 +86,6 @@ export default function PresidentContainer() {
                     )
                 )}
             </GridList>
-            {/* <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-                    <Alert onClose={handleClose} severity="success">
-                        Saved Candidate!
-                    </Alert>
-                </Snackbar> */}
         </Container>
     );
 }

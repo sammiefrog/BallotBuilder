@@ -1,5 +1,7 @@
+// importing necessary dependency
 import axios from "axios";
 
+// registration information posted by user and exported for other parts of application
 export const SendRegistration = async (username, password) => {
     try {
         const reply = axios({

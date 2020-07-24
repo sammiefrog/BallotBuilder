@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -42,6 +43,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// about card for Sammantha and exporting component
 export default function SammanthaCard() {
     const classes = useStyles();
 

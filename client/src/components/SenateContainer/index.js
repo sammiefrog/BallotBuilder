@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useEffect, useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
@@ -5,7 +6,6 @@ import OutlinedCard from "../Card";
 import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import { Typography } from "@material-ui/core";
-// import Box from "@material-ui/core/Box";
 import { UserContext } from "../../context/contexts/UserContext";
 
 const useStyles = makeStyles({
@@ -21,6 +21,7 @@ const useStyles = makeStyles({
     }
 });
 
+// container for senate candidates and exporting component for other parts of application
 export default function SenateContainer() {
     const classes = useStyles();
     const [senate, setSenate] = useState([]);
