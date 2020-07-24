@@ -12,11 +12,11 @@
 <li><a href="#contributors">Contributors / Contact</a></li>
 
 <h2 id="description"> Description </h2>
-<p>An app that allows a user to access game rules at their fingertips. Stickler's Paradise is an open source app where a user can view and search for games, or they can create an account so that they can add in their own games and rules. When viewing games, the username is tagged to the game so that the author is known. Multiple versions of rules can be posted for games.
+<p>Tennessee Ballot Builder is an application for new or seasoned voters to organize their voting plans. A user can browse candidates for federal office, or they can create an account to save candidates to their ballot, and create a voting plan. This app utilizes passport jwt-strategy for user authentication, as well as axios to obtain candidate data. 
 </p>
 
 <h2 id="usage"> Usage </h2>
-<p>Finding and adding game rules</p> 
+<p>Finding and saving candidates of interest and voting plans to a user's 'ballot'.</p> 
 
 <h2 id="tech"> Technology Stack </h2>          
 <ul>
@@ -35,14 +35,14 @@
 
 <h2 id="screen"> ScreenShots </h2>
 <h4> Desktop </h4>
-<img src= "" alt="home" >
-
-<h4> Mobile </h4>
-<img width="200" height="350" src= "">
+<img src= "./client/public/capt1.png" alt="home page" >
+<img src= "./client/public/capt2.png" alt="home page" >
+<img src= "./client/public/capt3.png" alt="home page" >
+<img src= "./client/public/capt4.png" alt="home page" >
 
 
 <h2 id="test"> Test </h2>
-<img width="600" height="350" src= "" alt="gif" >
+<img width="600" height="350" src= "./client/public/ballotbuild.gif" alt="gif" >
 
 <h2 id="contributors"> Contributors/ Contact</h2>
 
