@@ -1,3 +1,4 @@
+// importing necessary dependencies, components and styling
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import LoginForm from "../components/LoginForm";
@@ -12,13 +13,13 @@ const useStyles = makeStyles(theme => ({
     container: {
         justifyContent: "center",
         alignItems: "center"
-        // textAlign: 'center'
     },
     registerButton: {
         marginLeft: 10
     }
 }));
 
+// Login page
 const Login = () => {
     const classes = useStyles();
 
@@ -34,4 +35,5 @@ const Login = () => {
     );
 };
 
+// exporting page to be used in other parts of the application
 export default Login;

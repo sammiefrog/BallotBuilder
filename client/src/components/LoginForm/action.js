@@ -1,5 +1,7 @@
+// importing necessary dependency
 import axios from "axios";
 
+// login information posted by user
 const SendLoginInfo = async (username, password) => {
     try {
         const reply = await axios({
@@ -13,4 +15,5 @@ const SendLoginInfo = async (username, password) => {
     }
 };
 
+// exporting for use in other parts of the application
 export default SendLoginInfo;

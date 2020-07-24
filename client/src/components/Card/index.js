@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useContext, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Redirect } from "react-router-dom";
@@ -10,6 +11,7 @@ import { UserContext } from "../../context/contexts/UserContext";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
+// snackbar that alerts user to successful save and deletion
 function Alert(props) {
     return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -32,6 +34,7 @@ const useStyles = makeStyles({
     }
 });
 
+// card that contains candidate info
 function OutlinedCard(props) {
     const classes = useStyles();
     const { user } = useContext(UserContext);
@@ -101,4 +104,6 @@ function OutlinedCard(props) {
         );
     }
 }
+
+// exporting component to be used in other parts of the application
 export default OutlinedCard;

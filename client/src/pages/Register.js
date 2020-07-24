@@ -1,3 +1,4 @@
+// importing necessary dependencies, components and styling
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import RegisterForm from "../components/RegisterForm";
@@ -10,6 +11,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
+// Register Page
 const Register = () => {
     const classes = useStyles();
 
@@ -25,4 +27,5 @@ const Register = () => {
     );
 };
 
+// exporting page to be used in other parts of the application
 export default Register;

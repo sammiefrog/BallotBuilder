@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useState, useContext } from "react";
 import Container from "@material-ui/core/Container";
 import GridList from "@material-ui/core/GridList";
@@ -29,6 +30,7 @@ const useStyles = makeStyles({
     }
 });
 
+// container for house candidates on home page; exporting component for use in other parts of application
 export default function HouseContainer() {
     const classes = useStyles();
     const [house, setHouse] = useState([]);
@@ -40,7 +42,6 @@ export default function HouseContainer() {
             const response = await API.getDistrict(searchTerm);
             const districtId = response.data;
             const res = await API.getHouseCandidates(districtId);
-            console.log(res);
             const cleanData = res.data.candidate.map(person => ({
                 ...person,
                 coreValues:
@@ -88,7 +89,6 @@ export default function HouseContainer() {
                 : false
         )
     };
-    console.log(race);
 
     return (
         <Container className={classes.root}>

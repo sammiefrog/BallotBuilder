@@ -1,3 +1,4 @@
+// importing necessary dependencies and styling
 import React, { useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
@@ -11,6 +12,7 @@ import PropTypes from "prop-types";
 import { UserContext } from "../../context/contexts/UserContext";
 import { Menu } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
+
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -34,6 +36,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AppBarNav = props => {
+
     const classes = useStyles();
     const { user, dispatch } = useContext(UserContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -133,5 +136,7 @@ const AppBarNav = props => {
 AppBarNav.propTypes = {
     width: PropTypes.oneOf(["lg", "md", "sm", "xl", "xs"]).isRequired
 };
+
+// exporting component to be used in other parts of the application
 
 export default AppBarNav;

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// validating user
 const Validate = async () => {
     try {
         const reply = axios.get("/api/user/validate", {
@@ -12,4 +13,5 @@ const Validate = async () => {
     }
 };
 
+// exporting for use in other parts of the application
 export default Validate;
