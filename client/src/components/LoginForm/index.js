@@ -41,7 +41,7 @@ const LoginForm = () => {
     const auth = user.loggedIn;
     const message = user.message;
     let content;
-    console.log(message)
+    console.log(message);
 
     const handleFormSubmit = async event => {
         event.preventDefault();

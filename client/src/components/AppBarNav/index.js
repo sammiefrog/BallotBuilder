@@ -13,7 +13,6 @@ import { UserContext } from "../../context/contexts/UserContext";
 import { Menu } from "@material-ui/core";
 import Hidden from "@material-ui/core/Hidden";
 
-
 const useStyles = makeStyles(theme => ({
     root: {
         flexGrow: 1,
@@ -36,7 +35,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const AppBarNav = props => {
-
     const classes = useStyles();
     const { user, dispatch } = useContext(UserContext);
     const [anchorEl, setAnchorEl] = React.useState(null);
