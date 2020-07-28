@@ -1,7 +1,7 @@
 <img align="left" src= "https://img.shields.io/badge/License-MIT-green">
 <h1 align= "center">Tennessee Ballot Builder</h1> 
 <h2>Live Link</h2>
-<h3>https://ballotbuilder.herokuapp.com/</h3>  
+<h3>https://ballotbuilder.herokuapp.com/</h3>
 
 <h2> Table of Contents </h2>
 <li><a href="#description">Description</a></li>  
@@ -16,7 +16,7 @@
 </p>
 
 <h2 id="usage"> Usage </h2>
-<p>Finding and saving candidates of interest and voting plans to a user's 'ballot'.</p> 
+<p>Finding and saving candidates of interest and voting plans to a user's 'ballot'.</p>
 
 <h2 id="tech"> Technology Stack </h2>          
 <ul>
@@ -31,7 +31,7 @@
 <li>@hapi/joi</li>
 <li>Heroku</li>
 <li>Git</li>
-</ul>          
+</ul>
 
 <h2 id="screen"> ScreenShots </h2>
 <h4> Desktop </h4>
@@ -39,7 +39,6 @@
 <img src= "./client/public/capt2.png" alt="home page" >
 <img src= "./client/public/capt3.png" alt="home page" >
 <img src= "./client/public/capt4.png" alt="home page" >
-
 
 <h2 id="test"> Test </h2>
 <img width="600" height="350" src= "./client/public/ballotbuild.gif" alt="gif" >
