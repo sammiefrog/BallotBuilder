@@ -7,6 +7,7 @@ import API from "../../utils/API";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
+import { trackPromise } from 'react-promise-tracker';
 
 const useStyles = makeStyles({
     root: {
@@ -30,11 +31,12 @@ export default function PresidentContainer() {
     useEffect(() => {
         getPresident();
     }, []);
-
+    
     const getPresident = async () => {
         try {
-            const response = await API.getPresident();
-            const cleanData = response.data.candidate.map(person => ({
+            const response = await trackPromise(API.getPresident());
+            const cleanData = response.data.candidate.map
+            (person => ({
                 ...person,
                 coreValues:
                     "http://votesmart.org/issue_rating_category.php?can_id=" + person.candidateId
