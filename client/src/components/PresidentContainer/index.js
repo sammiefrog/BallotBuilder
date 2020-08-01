@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import { UserContext } from "../../context/contexts/UserContext";
 import { trackPromise } from "react-promise-tracker";
+import Pagination from "../Pagination";
 
 const useStyles = makeStyles({
     root: {
@@ -26,6 +27,8 @@ const useStyles = makeStyles({
 export default function PresidentContainer() {
     const classes = useStyles();
     const [president, setPresident] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [candidatesPerPage, setCandidatesPerPage] = useState(10);
     const { user } = useContext(UserContext);
 
     useEffect(() => {
@@ -46,6 +49,14 @@ export default function PresidentContainer() {
         }
     };
 
+    const indexofLastCandidate = currentPage * candidatesPerPage;
+
+    const indexofFirstCandidate = indexofLastCandidate - candidatesPerPage;
+
+    const currentCandidates = president.slice(indexofFirstCandidate, indexofLastCandidate);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     const saveCandidate = async data => {
         try {
             await API.saveCandidate(user.token, {
@@ -65,7 +76,7 @@ export default function PresidentContainer() {
                 Presidential Candidates for November 3rd General Election
             </Typography>
             <GridList className={classes.gridList} cols={3}>
-                {president.map((person, i) =>
+                {currentCandidates.map((person, i) =>
                     person.electionStatus === "Running" ||
                     (person.electionStatus === "Announced" &&
                         person.electionParties !== "Write-In (Independent)" &&
@@ -87,6 +98,11 @@ export default function PresidentContainer() {
                     )
                 )}
             </GridList>
+            <Pagination
+                candidatesPerPage={candidatesPerPage}
+                totalCandidates={president.length}
+                paginate={paginate}
+            />
         </Container>
     );
 }
