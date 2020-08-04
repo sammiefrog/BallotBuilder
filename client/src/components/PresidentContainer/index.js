@@ -31,6 +31,8 @@ export default function PresidentContainer() {
     const [candidatesPerPage, setCandidatesPerPage] = useState(10);
     const { user } = useContext(UserContext);
 
+
+
     useEffect(() => {
         getPresident();
     }, []);
@@ -49,11 +51,13 @@ export default function PresidentContainer() {
         }
     };
 
-    const indexofLastCandidate = currentPage * candidatesPerPage;
+        const indexofLastCandidate = currentPage * candidatesPerPage;
+        const indexofFirstCandidate = indexofLastCandidate - candidatesPerPage;
+        const currentCandidates =  president.slice(
+                    indexofFirstCandidate,
+                    indexofLastCandidate
+                );
 
-    const indexofFirstCandidate = indexofLastCandidate - candidatesPerPage;
-
-    const currentCandidates = president.slice(indexofFirstCandidate, indexofLastCandidate);
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 

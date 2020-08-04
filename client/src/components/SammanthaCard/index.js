@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     root: {
         maxWidth: 500,
         maxHeight: 900,
-        height: 900,
+        height: '100%',
         justifyContent: "center",
         margin: "25px",
         color: "black",
