@@ -90,6 +90,11 @@ export default function HouseContainer() {
         )
     };
 
+    console.log(race.hasDemocrat)
+    // console.log(race.hasDemocrat[1])
+    console.log(race.hasRepublican)
+    // console.log(race.hasRepublican[1])
+
     return (
         <Container className={classes.root}>
             <Box
@@ -113,15 +118,15 @@ export default function HouseContainer() {
                 </Button>
             </Box>
             <Typography variant="h4">
-                House Candidates for TN Primary Election on August 6th
+                TN House Candidates for General Election on November 3rd
             </Typography>
 
-            {race.hasDemocrat[0] || race.hasDemocrat[1] ? (
-                <Typography variant="h6">Democratic Primary</Typography>
+            {race.hasDemocrat[0] || race.hasDemocrat[1] || race.hasDemocrat[2] || race.hasDemocrat[3] || race.hasDemocrat[4] || race.hasDemocrat[5] || race.hasDemocrat[6] || race.hasDemocrat[7] || race.hasDemocrat[8] || race.hasDemocrat[9] ? (
+                <Typography variant="h6">Democratic Candidate</Typography>
             ) : (
                 ""
             )}
-
+          
             <GridList className={classes.gridList} cols={3}>
                 {house.map(person =>
                     person.electionStatus === "Running" &&
@@ -145,8 +150,8 @@ export default function HouseContainer() {
                     )
                 )}
             </GridList>
-            {race.hasRepublican[0] || race.hasRepublican[1] ? (
-                <Typography variant="h6">Republican Primary</Typography>
+            {race.hasRepublican[0] || race.hasRepublican[1] || race.hasRepublican[2] || race.hasRepublican[3] || race.hasRepublican[4] || race.hasRepublican[5] || race.hasRepublican[6] || race.hasRepublican[7] || race.hasRepublican[8] || race.hasRepublican[9] ? (
+                <Typography variant="h6">Republican Candidate</Typography>
             ) : (
                 ""
             )}
