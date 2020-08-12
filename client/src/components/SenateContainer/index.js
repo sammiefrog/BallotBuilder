@@ -61,10 +61,10 @@ export default function SenateContainer() {
     return (
         <Container className={classes.root}>
             <Typography variant="h4">
-                Senate Candidates for TN Primary Election on August 6th
+                TN Senate Candidates for General Election on November
             </Typography>
 
-            <Typography variant="h6">Republican Primary</Typography>
+            <Typography variant="h6">Republican Candidate</Typography>
             <GridList className={classes.gridList} cols={3}>
                 {senate.map(person =>
                     person.electionStatus === "Running" &&
@@ -88,7 +88,7 @@ export default function SenateContainer() {
                     )
                 )}
             </GridList>
-            <Typography variant="h6">Democratic Primary</Typography>
+            <Typography variant="h6">Democratic Candidate</Typography>
             <GridList className={classes.gridList} cols={3}>
                 {senate.map(person =>
                     person.electionStatus === "Running" &&
