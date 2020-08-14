@@ -31,8 +31,6 @@ export default function PresidentContainer() {
     const [candidatesPerPage, setCandidatesPerPage] = useState(10);
     const { user } = useContext(UserContext);
 
-
-
     useEffect(() => {
         getPresident();
     }, []);
@@ -57,7 +55,6 @@ export default function PresidentContainer() {
                     indexofFirstCandidate,
                     indexofLastCandidate
                 );
-
 
     const paginate = pageNumber => setCurrentPage(pageNumber);
 

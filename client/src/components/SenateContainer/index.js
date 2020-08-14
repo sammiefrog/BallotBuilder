@@ -34,6 +34,7 @@ export default function SenateContainer() {
     const getSenate = async () => {
         try {
             const response = await API.getSenate();
+            console.log(response)
             const cleanData = response.data.candidate.map(person => ({
                 ...person,
                 coreValues:

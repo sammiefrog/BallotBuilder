@@ -40,6 +40,7 @@ export default function HouseContainer() {
     const getCandidates = async () => {
         try {
             const response = await API.getDistrict(searchTerm);
+            console.log(response)
             const districtId = response.data;
             const res = await API.getHouseCandidates(districtId);
             const cleanData = res.data.candidate.map(person => ({
@@ -90,10 +91,7 @@ export default function HouseContainer() {
         )
     };
 
-    console.log(race.hasDemocrat)
-    // console.log(race.hasDemocrat[1])
-    console.log(race.hasRepublican)
-    // console.log(race.hasRepublican[1])
+
 
     return (
         <Container className={classes.root}>
