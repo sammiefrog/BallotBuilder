@@ -12,7 +12,6 @@ module.exports = {
     presidentialCandidates: async (req, res) => {
         try {
             const results = await axios.get(`${FEDURL + APIKEY}&officeId=1&o=JSON`);
-            console.log(results)
             res.json(results.data.candidateList);
         } catch (error) {
             console.log(error);

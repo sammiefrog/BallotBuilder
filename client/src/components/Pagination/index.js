@@ -8,9 +8,9 @@ const Pagination = ({ candidatesPerPage, totalCandidates, paginate }) => {
     }
 
     return (
-        <div>
-            <nav>
-                <ul className="pagination">
+        <div className="container">
+            <nav class="table-responsive d-flex mb-2">
+                <ul className="pagination mx-auto mb-0">
                     {pageNumbers.map(number => (
                         <li className="page-item" key={number}>
                             <a onClick={() => paginate(number)} href="#!" className="page-link">

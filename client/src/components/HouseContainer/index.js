@@ -40,7 +40,6 @@ export default function HouseContainer() {
     const getCandidates = async () => {
         try {
             const response = await API.getDistrict(searchTerm);
-            console.log(response)
             const districtId = response.data;
             const res = await API.getHouseCandidates(districtId);
             const cleanData = res.data.candidate.map(person => ({
