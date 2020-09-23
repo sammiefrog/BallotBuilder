@@ -52,7 +52,18 @@ export default function PresidentContainer() {
                 coreValues:
                     "http://votesmart.org/issue_rating_category.php?can_id=" + person.candidateId
             }));
-            setPresident(cleanData);
+
+            let uniqueCandidates = cleanData.filter(
+                (ele, ind) =>
+                    ind ===
+                    cleanData.findIndex(
+                        elem =>
+                            elem.ballotName === ele.ballotName && elem.ballotName === ele.ballotName
+                    )
+            );
+            console.log(uniqueCandidates);
+            setPresident(uniqueCandidates);
+
         } catch (error) {
             console.log(error);
         }
