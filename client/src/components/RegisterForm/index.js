@@ -107,7 +107,7 @@ const RegistrationForm = () => {
                     <Box>
                         <TextField
                             className={classes.root}
-                            id="outlined-basic password"
+                            id="outlined-basic match"
                             label="Re-enter Password"
                             value={match}
                             type="password"
