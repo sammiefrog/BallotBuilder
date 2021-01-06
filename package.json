@@ -27,7 +27,7 @@
     "dependencies": {
         "@hapi/joi": "^17.1.1",
         "@material-ui/lab": "^4.0.0-alpha.56",
-        "axios": "^0.19.2",
+        "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
         "dotenv": "^8.2.0",
         "express": "^4.16.3",
